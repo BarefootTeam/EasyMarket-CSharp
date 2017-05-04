@@ -1,0 +1,242 @@
+﻿using EasyMarket.Models;
+using EasyMarket.Utils;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Linq;
+using System.Web;
+
+namespace EasyMarket.Daos
+{
+    public class CarrinhoDao
+    {
+        private static Carrinho getCarrinho(object[] dados)
+        {
+            Carrinho Carrinho = new Carrinho();
+            Carrinho.Id = Convert.ToInt64(dados.GetValue(0));
+            Carrinho.Status = Convert.ToBoolean(dados.GetValue(1));
+            Carrinho.Data = Convert.ToDateTime(dados.GetValue(2));
+            DBUtil.closeConnection();
+            Carrinho.Usuario = UsuarioDao.BuscarPorId(Convert.ToInt64(dados.GetValue(3)));
+            return Carrinho;
+        }
+
+
+        public static List<Carrinho> BuscarTodos()
+        {
+            // Cria a Lista que ira retornar os Objetos da Tabela Passado Por Paramêtro, do banco de da dados
+
+            List<Carrinho> Lista = new List<Carrinho>();
+
+            try
+            {
+                String sql = "select id ,status,data,id_usuario from carrinho";
+                // Cira o Comando que sera executado no bancp de dados e indica qual conexao
+                SqlCommand cmd = new SqlCommand(sql, DBUtil.getConnection());
+                //Abre a Conexao com obanco de dados
+                DBUtil.getConnection().Open();
+                //Execute query
+                cmd.ExecuteNonQuery();
+                //Criar um Data Set para armazenar o retorno da query
+                DataTable dt = new DataTable();
+                //Crie um Sql Data Adapter para pegar o retorno da quer7y e preencher um Data table
+                SqlDataAdapter da = new SqlDataAdapter();
+                //recuperar o retorno da query
+                da.SelectCommand = cmd;
+                // Preencher o Data Table
+                da.Fill(dt);
+                // Percorre a as Linhas do Data Table
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Lista.Add(getCarrinho(dt.Rows[i].ItemArray));
+                }
+
+
+            }
+            catch (SqlException e)
+            {
+                Debug.WriteLine(e.Message);
+
+            }
+            finally
+            {
+                DBUtil.closeConnection();
+            }
+            return Lista;
+
+        }
+
+        public static List<Carrinho> buscarPorStatus(Boolean status)
+        {
+            List<Carrinho> Carrinho = new List<Carrinho>();
+
+            try
+            {
+                String sql = "select id ,status,data,id_usuario from carrinho where status = @status ";
+                SqlCommand cmd = new SqlCommand(sql, DBUtil.getConnection());
+                DBUtil.getConnection().Open();
+                cmd.Parameters.AddWithValue("@status", status);
+                cmd.ExecuteNonQuery();
+
+                DataSet ds = new DataSet();
+
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    Carrinho.Add(getCarrinho(ds.Tables[0].Rows[i].ItemArray));
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+
+            }
+            finally
+            {
+                DBUtil.closeConnection();
+            }
+            return Carrinho;
+        }
+
+        public static Boolean Persistir(Carrinho Carrinho)
+        {
+            SqlConnection conexao = DBUtil.getConnection();
+            try
+            {
+                SqlCommand cmd;
+
+                if (Carrinho.Id > 0)//update
+                {
+                      String sql = "update carrinho set status = @status, data = @data, id_usuario = @id_usuario where id = @id";
+                      cmd = new SqlCommand(sql, conexao);
+                }
+                else //insert
+                {
+                    //Calcular proximo ID - Função da Classe DbUtil
+                    Carrinho.Id = DBUtil.getNextId("carrinho");
+                    String sql = "insert into carrinho(id,status,data,id_usuario) values (@id,@status,@data,@id_usuario)";
+                    cmd = new SqlCommand(sql, conexao);
+                }
+
+                conexao.Open();
+                cmd.Parameters.AddWithValue("@id", Carrinho.Id);
+                cmd.Parameters.AddWithValue("@status", Carrinho.Status);
+                cmd.Parameters.AddWithValue("@data", Carrinho.Data);
+                cmd.Parameters.AddWithValue("@id_usuario", Carrinho.Usuario.Id);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Persistencia - Erro ao conectar ao banco de dados " + e.Message);
+                return false;
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
+
+        
+        public static Carrinho BuscarPorId(long id)
+        {
+            Carrinho Carrinho = null;
+            try
+            {
+                SqlCommand cmd;
+                String sql = "select id ,status,data,id_usuario from carrinho where id=@id";
+                cmd = new SqlCommand(sql, DBUtil.getConnection());
+                DBUtil.getConnection().Open();
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+
+                DataTable dt = new DataTable();
+
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+
+                Carrinho = getCarrinho(dt.Rows[0].ItemArray);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Erro ao buscar por id do Carrinho" + e.Message);
+            }
+            finally
+            {
+                DBUtil.closeConnection();
+            }
+
+            return Carrinho;
+        }
+        
+                public static long getLastId()
+                {
+                    long retorno = 0;
+                    try
+                    {
+                        SqlCommand cmd;
+                        String sql = "select max(id) as total from carrinho ";
+                        cmd = new SqlCommand(sql, DBUtil.getConnection());
+                        DBUtil.getConnection().Open();
+                        cmd.ExecuteNonQuery();
+                        DataTable dt = new DataTable();
+                        SqlDataAdapter da = new SqlDataAdapter();
+                        da.SelectCommand = cmd;
+                        da.Fill(dt);
+
+                        retorno = Convert.ToInt64(dt.Rows[0].ItemArray[0]);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine("Erro ao buscar por id " + e.Message);
+                    }
+                    finally
+                    {
+                        DBUtil.closeConnection();
+                    }
+
+                    return retorno;
+                }
+        
+                public static Boolean Excluir(Carrinho Carrinho)
+                {
+                    return Excluir(Carrinho.Id);
+                }
+
+
+                public static Boolean Excluir(long id)
+                {
+                    int total = 0;
+                    SqlConnection conexao = DBUtil.getConnection();
+                    try
+                    {
+                        SqlCommand cmd;
+                        cmd = new SqlCommand("delete from carrinho where id=@id", conexao);
+                        conexao.Open();
+                        cmd.Parameters.AddWithValue("@id", id);
+                        total = cmd.ExecuteNonQuery();
+
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine("Exclusão - Erro ao conectar ao banco de dados" + e.Message);
+                    }
+                    finally
+                    {
+                        conexao.Close();
+                    }
+
+                    return total > 0;
+                }
+        
+                           
+    }
+
+
+}
