@@ -15,7 +15,7 @@ namespace EasyMarket.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Pagina de descrição da sua aplicação";
 
             return View();
         }
