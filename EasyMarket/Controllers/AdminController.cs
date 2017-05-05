@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EasyMarket.Daos;
+using EasyMarket.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,10 @@ namespace EasyMarket.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: Admin
+        // GET: /Admin
         public ActionResult Index()
         {
-            if (Convert.ToBoolean(Session["logado"]))
+            if (Session["user"] != null)
             {
                 return View();
             }else
@@ -20,28 +22,52 @@ namespace EasyMarket.Controllers
             }
         }
 
+        // GET: /Admin/Login
         public ActionResult Login()
         {
             return View();
         }
 
+        // GET: /Admin/Logout
         public ActionResult Logout()
         {
-            Session["logado"] = false;
+            Session["user"] = null;
             return RedirectToAction("Index");
         }
 
+        // POST: /Admin/Autenticar
         [HttpPost]
         public ActionResult Autenticar(FormCollection collection)
         {
-            if(collection["email"] == "celio-rodrigues21@hotmail.com")
+
+            String login = collection["login"];
+            String senha = collection["senha"];
+
+            Usuario user = UsuarioDao.BuscarPorLogin(login);
+            Erro erro = new Erro();
+
+            if(user != null)
             {
-                Session["logado"] = true;
-                return RedirectToAction("Index");
-            }else
-            {
-                return View();
+                if(user.Senha == senha)
+                {
+                    // Login Correto
+                    Session["user"] = user;
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    // Senha Incorreta
+                    erro.Mensagem = "A senha digitada está incorreta";
+                }
             }
+            else
+            {
+                // Usuario não encontrado
+                erro.Mensagem = "Usuario não encontrado";
+            }
+
+            return View(erro);
+
         }
         
     }

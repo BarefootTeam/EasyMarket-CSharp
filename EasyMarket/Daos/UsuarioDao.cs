@@ -145,6 +145,38 @@ namespace EasyMarket.Daos
             return Usuario;
         }
 
+        public static Usuario BuscarPorLogin(String login)
+        {
+            Usuario Usuario = null;
+            try
+            {
+                SqlCommand cmd;
+                String sql = "SELECT id, login, senha, nome, cpf, id_supermercado FROM usuario where login=@login";
+                cmd = new SqlCommand(sql, DBUtil.getConnection());
+                DBUtil.getConnection().Open();
+                cmd.Parameters.AddWithValue("@login", login);
+                cmd.ExecuteNonQuery();
+
+                DataTable dt = new DataTable();
+
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+
+                Usuario = getUsuario(dt.Rows[0].ItemArray);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Erro ao buscar por login o Usuário " + e.Message);
+            }
+            finally
+            {
+                DBUtil.closeConnection();
+            }
+
+            return Usuario;
+        }
+
         public static long getLastId()
         {
             long retorno = 0;
