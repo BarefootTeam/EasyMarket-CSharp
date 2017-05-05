@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EasyMarket.Models.Usuario>
+﻿@model IEnumerable<EasyMarket.Models.Produto>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -6,19 +6,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Login)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Senha)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cpf)
+            @Html.DisplayNameFor(model => model.Cod)
         </th>
         <th>
-            testetstetste
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecoCusto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Foto)
         </th>
         <th></th>
     </tr>
@@ -26,16 +26,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Senha)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Cpf)
+            @Html.DisplayFor(modelItem => item.Cod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecoCusto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Foto)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

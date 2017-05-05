@@ -23,34 +23,15 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produtos <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastrar Produto", "Cadastrar", "Produto")</li>
-                            <li>@Html.ActionLink("Gerenciar Produtos", "Gerenciar", "Produto")</li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuários <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastrar Usuário", "Cadastrar", "Usuario")</li>
-                            <li>@Html.ActionLink("Gerenciar Usuários", "Gerenciar", "Usuario")</li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Supermercados <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastrar Supermercado", "Cadastrar", "Supermercado")</li>
-                            <li>@Html.ActionLink("Gerenciar Supermercados", "Gerenciar", "Supermercado")</li>
-                        </ul>
-                    </li>
+                    <li>@Html.ActionLink("Produtos", "Index", "Produto")</li>
+                    <li>@Html.ActionLink("Supermercados", "Index", "Supermercado")</li>
+                    <li>@Html.ActionLink("Usuários", "Index", "Usuario")</li>
+                                       
                 </ul>
                 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Bem Vindo(a), !</a></li>
-                    <li><a href="#">Sair</a></li>
+                    <li>@Html.ActionLink("Sair", "Logout", "Admin")</li>
                 </ul>
 
             </div>
