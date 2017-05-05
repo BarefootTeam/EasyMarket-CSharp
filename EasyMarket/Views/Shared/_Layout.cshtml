@@ -30,7 +30,7 @@
                 </ul>
                 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Bem Vindo(a), !</a></li>
+                    <li><a href="#">Bem Vindo(a), @Session["user"].ToString()!</a></li>
                     <li>@Html.ActionLink("Sair", "Logout", "Admin")</li>
                 </ul>
 

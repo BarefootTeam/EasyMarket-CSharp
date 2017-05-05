@@ -14,5 +14,6 @@ namespace EasyMarket.Models
         public decimal PrecoCusto { get; set; }
         public String Foto { get; set; }
         public Supermercado Supermercado { get; set; }
+
     }
 }

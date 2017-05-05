@@ -14,6 +14,10 @@ namespace EasyMarket.Models
         public String Cpf { get; set; }
         public Supermercado Supermercado { get; set; }
 
-
+        override
+        public String ToString()
+        {
+            return Nome;
+        }
     }
 }
