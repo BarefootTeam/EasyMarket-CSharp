@@ -12,9 +12,19 @@ namespace EasyMarket.Utils
         {
             if (con == null)
             {
+               //Conexão Célio
+               
+                /*   
                 string strcon = @"Data Source=DESKTOP-DQ0H3LO\SQLExpress;Initial Catalog=easymarket;Integrated Security=True";
                 con = new SqlConnection(strcon);
                 con.ConnectionString = strcon;
+               */
+
+                // Conexão Leo 
+                string strcon = @"Data Source=DESKTOP-I310QUT\SQLEXPRESS;Initial Catalog=easymarket;Integrated Security=True";
+                con = new SqlConnection(strcon);
+                con.ConnectionString = strcon;
+
             }
 
             return con;

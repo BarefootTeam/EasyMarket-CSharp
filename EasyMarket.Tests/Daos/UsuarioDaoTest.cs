@@ -21,8 +21,6 @@ namespace EasyMarket.Tests.Daos
         public void PersistirInserir()
         {
             Usuario u = new Usuario();
-            u.Supermercado = new Supermercado();
-            u.Supermercado.Id = 1L;
             u.Login = "LeoLogin";
             u.Senha = "LeoSenha";
             u.Nome = "LeoOn";
@@ -36,8 +34,6 @@ namespace EasyMarket.Tests.Daos
         public void PersistirAtualizar()
         {
             Usuario u = new Usuario();
-            u.Supermercado = new Supermercado();
-            u.Supermercado.Id = 1L;
             u.Id = UsuarioDao.getLastId();
             u.Login = "LeoLast";
             u.Senha = "LeoSenha";
@@ -46,6 +42,12 @@ namespace EasyMarket.Tests.Daos
 
 
             Assert.IsTrue(UsuarioDao.Persistir(u));
+        }
+        [TestMethod]
+        public void BuscarPorLogin()
+        {
+            Usuario u = UsuarioDao.BuscarPorLogin("teste");
+            Assert.IsNotNull(u);
         }
 
         [TestMethod]

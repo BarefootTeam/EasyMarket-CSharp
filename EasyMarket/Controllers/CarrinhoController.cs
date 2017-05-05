@@ -10,7 +10,7 @@ namespace EasyMarket.Controllers
     public class CarrinhoController : Controller
     {
         // GET: Carrinho
-        public ActionResult Carrinho_Compras()
+        public ActionResult CarrinhoCompras()
         {
             return View(CarrinhoDao.buscarPorStatus(true));
         }
