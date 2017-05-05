@@ -1,10 +1,8 @@
-@model EasyMarket.Models.Erro
-
 @{
     ViewBag.Title = "Autenticar";
 }
 
-<h2 class="text-center">@Model.Mensagem</h2>
+<h2 class="text-center">@ViewBag.StatusMessage</h2>
 <div class="text-center">
     <a href="@Url.Action("Login", "Admin")" class="btn btn-primary btn-sm">Tentar Novamente</a>
 </div>

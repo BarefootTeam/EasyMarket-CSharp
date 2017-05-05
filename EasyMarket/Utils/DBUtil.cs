@@ -12,7 +12,7 @@ namespace EasyMarket.Utils
         {
             if (con == null)
             {
-                string strcon = @"Data Source=DESKTOP-I310QUT\SQLEXPRESS;Initial Catalog=easymarket;Integrated Security=True";
+                string strcon = @"Data Source=DESKTOP-DQ0H3LO\SQLExpress;Initial Catalog=easymarket;Integrated Security=True";
                 con = new SqlConnection(strcon);
                 con.ConnectionString = strcon;
             }

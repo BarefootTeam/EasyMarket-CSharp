@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - EasyMarket</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -26,24 +26,24 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produtos <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastrar Produto", "CadastrarProduto", "Admin")</li>
-                            <li>@Html.ActionLink("Gerenciar Produtos", "GerenciarProdutos", "Admin")</li>
+                            <li>@Html.ActionLink("Cadastrar Produto", "Cadastrar", "Produto")</li>
+                            <li>@Html.ActionLink("Gerenciar Produtos", "Gerenciar", "Produto")</li>
                         </ul>
                     </li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuários <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastrar Usuário", "CadastrarUsuario", "Admin")</li>
-                            <li>@Html.ActionLink("Gerenciar Usuários", "GerenciarUsuarios", "Admin")</li>
+                            <li>@Html.ActionLink("Cadastrar Usuário", "Cadastrar", "Usuario")</li>
+                            <li>@Html.ActionLink("Gerenciar Usuários", "Gerenciar", "Usuario")</li>
                         </ul>
                     </li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Supermercados <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastrar Supermercado", "CadastrarSupermercado", "Admin")</li>
-                            <li>@Html.ActionLink("Gerenciar Supermercados", "GerenciarSupermercados", "Admin")</li>
+                            <li>@Html.ActionLink("Cadastrar Supermercado", "Cadastrar", "Supermercado")</li>
+                            <li>@Html.ActionLink("Gerenciar Supermercados", "Gerenciar", "Supermercado")</li>
                         </ul>
                     </li>
                 </ul>

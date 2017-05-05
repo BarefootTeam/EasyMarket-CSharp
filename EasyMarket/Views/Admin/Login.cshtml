@@ -1,4 +1,8 @@
-﻿<div class="container">
+﻿@{
+    ViewBag.Title = "Entrar";
+}
+
+<div class="container">
 
     @using (Html.BeginForm("Autenticar", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
     {

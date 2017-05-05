@@ -75,4 +75,4 @@ _[Ss]cripts
 *.dot[Cc]over
 
 #####
-DBUtil.cs
+EasyMarket/Utils/DBUtil.cs

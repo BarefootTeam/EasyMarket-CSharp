@@ -44,7 +44,6 @@ namespace EasyMarket.Controllers
             String senha = collection["senha"];
 
             Usuario user = UsuarioDao.BuscarPorLogin(login);
-            Erro erro = new Erro();
 
             if(user != null)
             {
@@ -57,16 +56,16 @@ namespace EasyMarket.Controllers
                 else
                 {
                     // Senha Incorreta
-                    erro.Mensagem = "A senha digitada está incorreta";
+                    ViewBag.StatusMessage = "A senha digitada está incorreta";
                 }
             }
             else
             {
                 // Usuario não encontrado
-                erro.Mensagem = "Usuario não encontrado";
+                ViewBag.StatusMessage = "Usuario não encontrado";
             }
 
-            return View(erro);
+            return View();
 
         }
         
