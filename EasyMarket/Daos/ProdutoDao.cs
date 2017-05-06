@@ -72,6 +72,50 @@ namespace EasyMarket.Daos
 
         }
 
+        public static List<Produto> BuscarPorSupermercado(long id)
+        {
+            // Cria a Lista que ira retornar os Objetos da Tabela Passado Por Paramêtro, do banco de da dados
+
+            List<Produto> Lista = new List<Produto>();
+
+            try
+            {
+                String sql = "select id ,nome ,cod ,descricao ,preco_custo , foto, id_supermercado from produto where id_supermercado = " + id;
+                // Cira o Comando que sera executado no bancp de dados e indica qual conexao
+                SqlCommand cmd = new SqlCommand(sql, DBUtil.getConnection());
+                //Abre a Conexao com obanco de dados
+                DBUtil.getConnection().Open();
+                //Execute query
+                cmd.ExecuteNonQuery();
+                //Criar um Data Set para armazenar o retorno da query
+                DataTable dt = new DataTable();
+                //Crie um Sql Data Adapter para pegar o retorno da quer7y e preencher um Data table
+                SqlDataAdapter da = new SqlDataAdapter();
+                //recuperar o retorno da query
+                da.SelectCommand = cmd;
+                // Preencher o Data Table
+                da.Fill(dt);
+                // Percorre a as Linhas do Data Table
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Lista.Add(getProduto(dt.Rows[i].ItemArray));
+                }
+
+
+            }
+            catch (SqlException e)
+            {
+                Debug.WriteLine(e.Message);
+
+            }
+            finally
+            {
+                DBUtil.closeConnection();
+            }
+            return Lista;
+
+        }
+
         public static Produto BuscarPorId(long id)
         {
             Produto Produto = null;

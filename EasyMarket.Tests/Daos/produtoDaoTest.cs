@@ -18,6 +18,14 @@ namespace EasyMarket.Tests.Daos
         }
 
         [TestMethod]
+        public void BuscarPorSupermercado()
+        {
+            List<Produto> Produtos = ProdutoDao.BuscarPorSupermercado(1L);
+            Assert.IsTrue(Produtos.Count > 0);
+
+        }
+
+        [TestMethod]
         public void PersistirInserir()
         {
                 

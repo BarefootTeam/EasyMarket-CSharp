@@ -10,10 +10,24 @@ namespace EasyMarket.Controllers
 {
     public class ProdutoController : Controller
     {
-        // GET: Produto
-        public ActionResult Index()
+        // GET: Supermercado
+        public ActionResult SelecionarMercado()
         {
-            return View(ProdutoDao.BuscarTodos());
+            return View(SupermercadoDao.BuscarTodos());
+        }
+
+        // GET: Produto
+        public ActionResult Index(int id)
+        {
+            if (id != 0)
+            {
+                return View(ProdutoDao.BuscarPorSupermercado(id));
+            }
+            else
+            {
+                return View(ProdutoDao.BuscarTodos());
+            }
+           
         }
 
         // GET: Produto/Details/5

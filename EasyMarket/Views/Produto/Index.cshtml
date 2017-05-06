@@ -4,31 +4,13 @@
     <div class="panel-heading">Lista de produtos</div>    
 
     <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-info">
-            @Html.ActionLink("  ", "Create")
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; Novo
-        </button>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>       
 
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Selecione o Supermercado
-                <span class="caret"></span>
+            <button type="button" class="btn btn-info"> @Html.DisplayNameFor(model => model.Supermercado.Nome)  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; Novo
             </button>
-            <ul class="dropdown-menu">
-              
-                 @if (1 == 1 )
-                 {                           
-
-                <li>@Html.DisplayNameFor(model => model.Nome)</li>
-                <li><a href="#">If</a></li>
-                 }else {
-                   <li><a href="#">Else </a></li>
-                   <li><a href="#">Dropdown Else</a></li>
-                 }
-                 
-                
-
-            </ul>
         </div>
     </div>
         
