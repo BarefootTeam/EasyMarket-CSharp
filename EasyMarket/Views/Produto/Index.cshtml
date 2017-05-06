@@ -1,18 +1,16 @@
 ﻿@model IEnumerable<EasyMarket.Models.Produto>
 
-<div class="panel panel-default">
-    <div class="panel-heading">Lista de produtos</div>    
+<div class="panel panel-info">
+    <div class="panel-heading">Lista de produtos do Supermercado &nbsp; <span class="glyphicon glyphicon-forward" aria-hidden="true"></span> &nbsp; @Html.DisplayName(Model.First().Supermercado.Nome) </div>    
 
-    <div class="btn-group" role="group" aria-label="...">
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>       
-
+    <div class="btn-group" role="group" aria-label="...">      
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-info"> @Html.DisplayNameFor(model => model.Supermercado.Nome)  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; Novo
-            </button>
+            <a href="@Url.Action("Create", "Produto")" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; Cadastrar Produto </a>
         </div>
-    </div>
+        <div class="btn-group" role="group">
+            <a href="@Url.Action("SelecionarMercado", "Produto")" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> &nbsp; Selecionar Outro Supermercado </a>
+        </div>
+   </div>
         
       <div id="Tabela">
         <table class="table table-striped">

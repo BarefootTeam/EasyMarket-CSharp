@@ -1,13 +1,14 @@
 ﻿
 @model IEnumerable<EasyMarket.Models.Supermercado>
 
-<div class="panel panel-default">
+<div class="panel panel-info">
     <div class="panel-heading">Lista de produtos</div>
-    <div class="btn-group" role="group" aria-label="...">            
-        <button type="button" class="btn btn-info">  @Html.ActionLink(" ", "Create", new { id = 0 })<span class="glyphicon glyphicon-plus" ></span> &nbsp; Novo
-        </button>
 
-        <div class="btn-group" role="group">
+   
+    <div class="btn-group" role="group" aria-label="...">       
+       
+          <div class="btn-group" role="group">
+              
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Selecione o Supermercado
                 <span class="caret"></span>
@@ -24,11 +25,14 @@
                         @Html.ActionLink( item.Nome , "Index", new { id = item.Id })                       
                     </li>
                 }
-
+                <li role="separator" class="divider"></li>
+                <li>
+                    <a href="@Url.Action("Create", "Supermercado")"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; Cadastrar </a>
+                </li>
             </ul>
         </div>
     </div>
-
+</div>
    
 
 
