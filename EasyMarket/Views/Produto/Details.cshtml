@@ -7,7 +7,7 @@
             <table>
                 <tr>
                     <td>
-                        <img src="~/Utils/img/@Html.DisplayFor(model => model.Foto)" class="img-responsive" alt="Imagem responsiva">
+                        <img src="~/Utils/img/@Html.DisplayFor(model => model.Foto)" class="img-responsive" alt="Imagem responsiva" title="@Html.DisplayFor(model => model.Foto)" >
                     </td>
                     <td>
                         <dl class="dl-horizontal">
@@ -50,8 +50,8 @@
         </div>
 
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink(" Editar ", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink(" Voltar Para a Lista ", "Index")
         </p>
 
     </div>    
