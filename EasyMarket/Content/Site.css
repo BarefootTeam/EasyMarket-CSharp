@@ -50,3 +50,76 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.menu-carrinho {
+    margin: 0 auto;
+    width: 600px;
+    height: 160px;
+    border: solid 1px #999999;
+    border-radius: 20px;
+}
+
+.menu-carrinho .menu-inside {
+    float: left;
+    width: 66%;
+    margin-left: 5%;
+    margin-top: 3px;
+}
+
+.menu-carrinho .menu-inside a {
+    float: left;
+    text-align: center;
+    font-size: 40px;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+.menu-carrinho .menu-inside a.search-icon {
+    font-size: 20px;
+    color: #fff;
+}
+
+.menu-carrinho .menu-inside a.search-icon span {
+    background: #428bca;
+    width: 40px;
+    height: 40px;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 5px;
+}
+
+.menu-carrinho .menu-inside a.search-icon span:hover,
+.menu-carrinho .menu-inside a.search-icon span:focus,
+.menu-carrinho .menu-inside a.search-icon span:active {
+    background: #2a6496;
+}
+    
+.menu-carrinho .screen {
+    float: left;
+    width: 70%;
+    height: 45%;
+    margin-top: 20px;
+    margin-left: 5%;
+    border: solid 1px #999;
+}
+
+.menu-carrinho .menu-right {
+    float: right;
+    width: 22%;
+    margin-top: 5px;
+}
+
+.menu-carrinho .menu-right img {
+    float: left;
+    width: 60%;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.menu-carrinho .menu-right a {
+    float: left;
+    width: 80%;
+    margin-left: 6px;
+    margin-top: 10px;
+}
