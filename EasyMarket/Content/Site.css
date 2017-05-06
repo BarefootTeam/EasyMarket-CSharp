@@ -57,6 +57,7 @@
     height: 160px;
     border: solid 1px #999999;
     border-radius: 20px;
+    position: relative;
 }
 
 .menu-carrinho .menu-inside {
@@ -121,5 +122,40 @@
     float: left;
     width: 80%;
     margin-left: 6px;
+    margin-top: 10px;
+}
+
+.menu-carrinho .codigo-de-barras {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: #FFFFFF;
+    border-radius: 20px;
+    display: none;
+}
+
+.menu-carrinho .codigo-de-barras input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border: 0;
+    padding: 0;
+}
+
+.menu-carrinho .codigo-de-barras img {
+    width: 200px;
+    margin-left: calc(50% - 100px);
+    margin-top: 20px;
+}
+
+.menu-carrinho .codigo-de-barras span {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 2px;
     margin-top: 10px;
 }
