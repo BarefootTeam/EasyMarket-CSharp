@@ -243,6 +243,13 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Utils\img\arroz.jpg" />
+    <Content Include="Utils\img\bombril.jpg" />
+    <Content Include="Utils\img\catchup.jpg" />
+    <Content Include="Utils\img\creme_de_leite.jpg" />
+    <Content Include="Utils\img\danone.jpg" />
+    <Content Include="Utils\img\garoto.jpg" />
+    <Content Include="Utils\img\toddy.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
