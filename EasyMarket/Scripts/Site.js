@@ -25,12 +25,34 @@
 
 };
 
+var showMessage = function (message) {
+    var actual = $('.screen > div:visible');
+    var messagebox = $('.screen .mensagem');
+
+    messagebox.find('span').html(message);
+
+    if (actual.length > 0) {
+        actual.hide();
+    }
+
+    messagebox.css('display', 'flex');
+
+    setTimeout(function () {
+        messagebox.hide();
+
+        if (actual.length > 0) {
+            actual.show();
+        }
+
+    }, 3000);
+};
+
 $(function () {
 
     $('#add-produto').click(function (event) {
         event.preventDefault();
         getBarCode(function (barcode) {
-            alert("Add: " + barcode);
+            alert("Remove: " + barcode);
         });
     });
 

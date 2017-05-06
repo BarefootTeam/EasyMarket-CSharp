@@ -1,23 +1,48 @@
 ﻿@{
-    ViewBag.Title = "CarrinhoCompras";
+    ViewBag.Title = "Compras";
 }
 
 <div class="menu-carrinho">
+
     <div class="screen">
-    
+
+        <div class="home">
+            <div class="total-produtos">
+                <span>Total de produtos:</span>
+                <span></span>
+            </div>
+            <div class="valor-total">
+                <span>Valor total:</span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="produto">
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="mensagem">
+            <span></span>
+        </div>
+
     </div>
+
     <div class="menu-right">
         <img src="/Content/carrinho.png" />
         <a href="#" class="btn btn-success">INICIAR</a>
     </div>
+
     <div class="menu-inside">
         <a href="#" id="add-produto"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
         <a href="#" id="remove-produto"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a>
         <a href="#" class="search-icon" id="busca-produto"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
     </div>
+
     <div class="codigo-de-barras">
         <input type="text" name="codigo" id="codigo-de-barras" />
         <img src="/Content/codigo-de-barras.jpg" />
         <span>Passe o código de barras na leitora</span>
     </div>
+
 </div>
