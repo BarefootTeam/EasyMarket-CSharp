@@ -1,55 +1,67 @@
 ﻿@model EasyMarket.Models.Produto
 
+
+
+
+
+
+
 <div>
     <h4>Produto</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+    <table>
+        <tr>
+            <td>
+                <img src="..." class="img-responsive" alt="Imagem responsiva">
+            </td>
+            <td>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cod)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nome)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cod)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Cod)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Cod)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Descricao)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PrecoCusto)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Descricao)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PrecoCusto)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PrecoCusto)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
+                    <dd>
+                        R$  @Html.DisplayFor(model => model.PrecoCusto)
+                    </dd>
+                </dl>
+            </td>
+                </tr>        
+    </table>
+      
+    </div>    
 
-        <dd>
-            @Html.DisplayFor(model => model.Foto)
-        </dd>
-
-    </dl>
-</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<!--
+    
 
 
 <h3>Are you sure you want to delete this?</h3>
