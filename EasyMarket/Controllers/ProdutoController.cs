@@ -15,9 +15,8 @@ namespace EasyMarket.Controllers
         {
             return View(SupermercadoDao.BuscarTodos());
         }
-
-        // GET: Produto
-        public ActionResult Index(int id)
+        // GET: Produto Por Supermercado
+        public ActionResult Busca(int id)
         {
             if (id != 0)
             {
@@ -27,6 +26,13 @@ namespace EasyMarket.Controllers
             {
                 return View(ProdutoDao.BuscarTodos());
             }
+
+        }
+
+        // GET: Produto
+        public ActionResult Index()
+        {       
+                return View(ProdutoDao.BuscarTodos());       
            
         }
 
@@ -36,34 +42,34 @@ namespace EasyMarket.Controllers
             return View(ProdutoDao.BuscarPorId(id));
         }
 
+
         // GET: Produto/Create
         public ActionResult Create()
         {
+            ViewBag.supermercados = SupermercadoDao.BuscarTodos();
+            ViewBag.produtos = ProdutoDao.BuscarTodos();
             return View();
         }
-
+        
         // POST: Produto/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
-                /*
                 Produto p = new Produto();
-                p.Supermercado = new Supermercado();
-                p.Nome = "Biscoito";
-                p.Cod = "B1234";
-                p.Descricao = "Biscoito da Marca Aymoré";
-                p.PrecoCusto = 1.20M;
-                p.Foto = "C:\teste_para_foto\foto_teste.jpg";
-                p.Supermercado.Id = 1L;
-                Assert.IsTrue(ProdutoDao.Persistir(p));
-
+                p.Nome = collection["Nome"];
+                p.Cod = collection["Cod"];
+                p.Descricao = collection["Descricao"];
+                p.PrecoCusto = Convert.ToDecimal(collection["PrecoCusto"]);
+                p.Foto = collection["Foto"];
+                p.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt32(collection["Supermercado.Id"]));
+                               
                 if (!ProdutoDao.Persistir(p))
                 {
                     return View();
                 }
-                */
+
                 return RedirectToAction("Index");
             }
             catch

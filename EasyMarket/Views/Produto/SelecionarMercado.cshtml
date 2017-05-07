@@ -14,21 +14,12 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-
-                <li>
-                    @Html.ActionLink("Todos os Supermecados", "Index", new { id = 0 })
-                </li>
-
                 @foreach (var item in Model)
                 {                          
                     <li>
-                        @Html.ActionLink( item.Nome , "Index", new { id = item.Id })                       
+                        @Html.ActionLink( item.Nome , "Busca", new { id = item.Id })                       
                     </li>
                 }
-                <li role="separator" class="divider"></li>
-                <li>
-                    <a href="@Url.Action("Create", "Supermercado")"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; Cadastrar </a>
-                </li>
             </ul>
         </div>
     </div>

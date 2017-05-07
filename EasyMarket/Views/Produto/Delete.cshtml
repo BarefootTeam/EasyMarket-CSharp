@@ -1,58 +1,77 @@
 ﻿@model EasyMarket.Models.Produto
+       
+<div class="panel panel-info">
+    <div class="panel-heading"> Deletar Produto </div>
+    <div class="panel-body">
+        <h3>Tem certeza que deseja deletar este Produto?</h3>
+        <div>
+             <div>
+                <table>
+                    <tr>
+                        <td>
+                            <img src="~/Utils/img/@Html.DisplayFor(model => model.Foto)" class="img-responsive" alt="Imagem responsiva" title="@Html.DisplayFor(model => model.Foto)">
+                        </td>
+                        <td>
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Produto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Nome)
+                                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Cod)
+                                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cod)
-        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Cod)
+                                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cod)
-        </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Descricao)
+                                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Descricao)
+                                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.PrecoCusto)
+                                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PrecoCusto)
-        </dt>
+                                <dd>
+                                    R$  @Html.DisplayFor(model => model.PrecoCusto)
+                                </dd>
+                                <dt>
+                                    Supermercado
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Supermercado.Nome)
+                                </dd>
+                                <dt>
+                                    Id Do Supermercado
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Supermercado.Id)
+                                </dd>
+                            </dl>
+                        </td>
+                    </tr>
+                </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.PrecoCusto)
-        </dd>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.Foto)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <div class="form-actions no-color">
+                    <a href="@Url.Action("Index", "Produto")" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> &nbsp; Voltar</a>   &nbsp;                   
+                    <input type="submit" value="Deletar" class="btn btn-default"/>                    
+                </div>
+            }
         </div>
-    }
+</div>
 </div>
