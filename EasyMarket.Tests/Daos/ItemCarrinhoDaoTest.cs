@@ -18,17 +18,17 @@ namespace EasyMarket.Tests.Daos
         }
 
         [TestMethod]
-        public void BuscarPorId_Produto()
+        public void BuscarPorProduto()
         {
-            List<ItemCarrinho> Itens = ItemCarrinhoDao.buscarPorId_Produto(1L);
+            List<ItemCarrinho> Itens = ItemCarrinhoDao.BuscarPorProduto(1L);
             Assert.IsTrue(Itens.Count > 0);
 
         }
 
         [TestMethod]
-        public void BuscarPorId_Carrinho()
+        public void BuscarPorCarrinho()
         {
-            List<ItemCarrinho> Itens = ItemCarrinhoDao.buscarPorId_Carrinho(1L);
+            List<ItemCarrinho> Itens = ItemCarrinhoDao.BuscarPorCarrinho(1L);
             Assert.IsTrue(Itens.Count > 0);
 
         }
@@ -61,7 +61,7 @@ namespace EasyMarket.Tests.Daos
         }
 
         [TestMethod]
-        public void BuscarID()
+        public void BuscarId()
         {
             ItemCarrinho item = ItemCarrinhoDao.BuscarPorId(1);
             Assert.IsNotNull(item);

@@ -14,13 +14,14 @@ namespace EasyMarket.Daos
     {
         private static Carrinho getCarrinho(object[] dados)
         {
-            Carrinho Carrinho = new Carrinho();
-            Carrinho.Id = Convert.ToInt64(dados.GetValue(0));
-            Carrinho.Status = Convert.ToBoolean(dados.GetValue(1));
-            Carrinho.Data = Convert.ToDateTime(dados.GetValue(2));
+            Carrinho carrinho = new Carrinho();
+            carrinho.Id = Convert.ToInt64(dados.GetValue(0));
+            carrinho.Status = Convert.ToBoolean(dados.GetValue(1));
+            carrinho.Data = Convert.ToDateTime(dados.GetValue(2));
             DBUtil.closeConnection();
-            Carrinho.Usuario = UsuarioDao.BuscarPorId(Convert.ToInt64(dados.GetValue(3)));
-            return Carrinho;
+            carrinho.Itens = ItemCarrinhoDao.BuscarPorCarrinho(carrinho.Id);
+            carrinho.Usuario = UsuarioDao.BuscarPorId(Convert.ToInt64(dados.GetValue(3)));
+            return carrinho;
         }
 
 
@@ -32,7 +33,7 @@ namespace EasyMarket.Daos
 
             try
             {
-                String sql = "select id ,status,data,id_usuario from carrinho";
+                String sql = "SELECT id, status, data, id_usuario FROM carrinho";
                 // Cira o Comando que sera executado no bancp de dados e indica qual conexao
                 SqlCommand cmd = new SqlCommand(sql, DBUtil.getConnection());
                 //Abre a Conexao com obanco de dados
@@ -74,7 +75,7 @@ namespace EasyMarket.Daos
 
             try
             {
-                String sql = "select id ,status,data,id_usuario from carrinho where status = @status ";
+                String sql = "SELECT id, status, data, id_usuario FROM carrinho WHERE status = @status";
                 SqlCommand cmd = new SqlCommand(sql, DBUtil.getConnection());
                 DBUtil.getConnection().Open();
                 cmd.Parameters.AddWithValue("@status", status);
@@ -112,14 +113,14 @@ namespace EasyMarket.Daos
 
                 if (Carrinho.Id > 0)//update
                 {
-                      String sql = "update carrinho set status = @status, data = @data, id_usuario = @id_usuario where id = @id";
+                      String sql = "UPDATE carrinho SET status = @status, data = @data, id_usuario = @id_usuario WHERE id = @id";
                       cmd = new SqlCommand(sql, conexao);
                 }
                 else //insert
                 {
                     //Calcular proximo ID - Função da Classe DbUtil
                     Carrinho.Id = DBUtil.getNextId("carrinho");
-                    String sql = "insert into carrinho(id,status,data,id_usuario) values (@id,@status,@data,@id_usuario)";
+                    String sql = "INSERT INTO carrinho(id, status, data, id_usuario) values (@id, @status, @data, @id_usuario)";
                     cmd = new SqlCommand(sql, conexao);
                 }
 
@@ -149,7 +150,7 @@ namespace EasyMarket.Daos
             try
             {
                 SqlCommand cmd;
-                String sql = "select id ,status,data,id_usuario from carrinho where id=@id";
+                String sql = "SELECT id, status, data, id_usuario FROM carrinho WHERE id = @id";
                 cmd = new SqlCommand(sql, DBUtil.getConnection());
                 DBUtil.getConnection().Open();
                 cmd.Parameters.AddWithValue("@id", id);
@@ -181,7 +182,7 @@ namespace EasyMarket.Daos
                     try
                     {
                         SqlCommand cmd;
-                        String sql = "select max(id) as total from carrinho ";
+                        String sql = "SELECT max(id) AS total FROM carrinho ";
                         cmd = new SqlCommand(sql, DBUtil.getConnection());
                         DBUtil.getConnection().Open();
                         cmd.ExecuteNonQuery();
@@ -217,7 +218,7 @@ namespace EasyMarket.Daos
                     try
                     {
                         SqlCommand cmd;
-                        cmd = new SqlCommand("delete from carrinho where id=@id", conexao);
+                        cmd = new SqlCommand("DELETE FROM carrinho WHERE id=@id", conexao);
                         conexao.Open();
                         cmd.Parameters.AddWithValue("@id", id);
                         total = cmd.ExecuteNonQuery();

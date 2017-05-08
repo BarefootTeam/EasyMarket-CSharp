@@ -35,7 +35,6 @@ namespace EasyMarket.Daos
             try
             {
                 String sql = "select id,valor,quantidade,id_carrinho,id_produto from itens_carrinho";
-                // Cira o Comando que sera executado no bancp de dados e indica qual conexao
                 SqlCommand cmd = new SqlCommand(sql, DBUtil.getConnection());
                 //Abre a Conexao com obanco de dados
                 DBUtil.getConnection().Open();
@@ -70,7 +69,8 @@ namespace EasyMarket.Daos
 
         }
 
-        public static List<ItemCarrinho> buscarPorId_Produto(long Id)
+
+        public static List<ItemCarrinho> BuscarPorProduto(long Id)
         {
             List<ItemCarrinho> itens = new List<ItemCarrinho>();
 
@@ -105,7 +105,12 @@ namespace EasyMarket.Daos
             return itens;
         }
 
-        public static List<ItemCarrinho> buscarPorId_Carrinho(long Id)
+        public static List<ItemCarrinho> BuscarPorCarrinho(Carrinho carrinho)
+        {
+            return BuscarPorCarrinho(carrinho.Id);
+        }
+
+        public static List<ItemCarrinho> BuscarPorCarrinho(long Id)
         {
             List<ItemCarrinho> itens = new List<ItemCarrinho>();
 
