@@ -125,6 +125,10 @@
     margin-top: 10px;
 }
 
+.menu-carrinho .menu-right a#finalizar-carrinho {
+    display: none;
+}
+
 .menu-carrinho .codigo-de-barras {
     position: absolute;
     width: 100%;
