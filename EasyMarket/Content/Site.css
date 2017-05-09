@@ -230,3 +230,7 @@
     color: #ff0000;
     font-weight: bold;
 }
+
+#add-produto, #remove-produto {
+    display: none;
+}

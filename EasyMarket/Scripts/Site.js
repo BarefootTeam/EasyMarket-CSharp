@@ -52,7 +52,7 @@ var showProduto = function (produto) {
     var prod = $('.produto');
 
     prod.find('span').eq(0).html(produto.Nome);
-    prod.find('span').eq(1).html(produto.PrecoCusto);
+    prod.find('span').eq(1).html(produto.Formatado);
 
     home.hide();
     prod.show();
@@ -70,6 +70,7 @@ $(function () {
 
         var botao1 = $(this);
         var botao2 = $('#finalizar-carrinho');
+        var botao3 = $('#add-produto, #remove-produto');
 
         botao1.html('AGUARDE');
         botao1.addClass('disabled');
@@ -80,17 +81,61 @@ $(function () {
             success: function (response) {
                 if (response.Status == 1) {
                     botao1.hide();
+                    botao1.html("INICIAR");
+                    botao1.removeClass("disabled");
                     botao2.show();
+                    botao3.show();
                 }
             }
         });
 
     });
 
+    $('#finalizar-carrinho').click(function (event) {
+        event.preventDefault();
+
+        var botao1 = $(this);
+        var botao2 = $('#iniciar-carrinho');
+        var botao3 = $('#add-produto, #remove-produto');
+
+        botao1.html('AGUARDE');
+        botao1.addClass('disabled');
+
+        $.ajax({
+            type: 'POST',
+            url: '/Carrinho/Finalizar',
+            success: function (response) {
+                if (response.Status == 1) {
+                    botao1.hide();
+                    botao1.html("FINALIZAR");
+                    botao1.removeClass("disabled");
+                    botao2.show();
+                    botao3.hide();
+                }
+            }
+        });
+    });
+
     $('#add-produto').click(function (event) {
         event.preventDefault();
         getBarCode(function (barcode) {
-            alert("Add: " + barcode);
+
+            $.ajax({
+                type: 'POST',
+                url: '/Carrinho/Adicionar',
+                data: {
+                    barcode: barcode
+                },
+                success: function (response) {
+                    console.log(response);
+                    if (response.Status == 1) {
+                        showProduto(response.Produto);
+                    } else {
+                        showMessage("Produto não encontrado");
+                    }
+                }
+            });
+
         });
     });
 
@@ -103,6 +148,7 @@ $(function () {
 
     $('#busca-produto').click(function () {
         event.preventDefault();
+
         getBarCode(function (barcode) {
 
             $.ajax({
@@ -112,7 +158,12 @@ $(function () {
                     barcode: barcode
                 },
                 success: function (response) {
-                    showProduto(response);
+                    console.log(response);
+                    if (response.Status == 1) {
+                        showProduto(response.Produto);
+                    } else {
+                        showMessage("Produto não encontrado");
+                    }
                 }
             });
 

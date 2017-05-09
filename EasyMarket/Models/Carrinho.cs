@@ -32,5 +32,22 @@ namespace EasyMarket.Models
             }
             return total;
         }
+
+        public ItemCarrinho BuscarItem(Produto p)
+        {
+
+            if (Itens != null && Itens.Count > 0)
+            {
+                foreach (ItemCarrinho i in Itens)
+                {
+                    if (i.Produto.Id == p.Id)
+                    {
+                        return i;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

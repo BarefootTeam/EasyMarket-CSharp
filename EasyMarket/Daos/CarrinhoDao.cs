@@ -104,14 +104,21 @@ namespace EasyMarket.Daos
             return Carrinho;
         }
 
-        public static Boolean Persistir(Carrinho Carrinho)
+
+
+        public static Boolean Persistir(Carrinho carrinho)
+        {
+            return PersistirRetorno(carrinho) != null;
+        }
+
+        public static Carrinho PersistirRetorno(Carrinho carrinho)
         {
             SqlConnection conexao = DBUtil.getConnection();
             try
             {
                 SqlCommand cmd;
 
-                if (Carrinho.Id > 0)//update
+                if (carrinho.Id > 0)//update
                 {
                       String sql = "UPDATE carrinho SET status = @status, data = @data, id_usuario = @id_usuario WHERE id = @id";
                       cmd = new SqlCommand(sql, conexao);
@@ -119,23 +126,24 @@ namespace EasyMarket.Daos
                 else //insert
                 {
                     //Calcular proximo ID - Função da Classe DbUtil
-                    Carrinho.Id = DBUtil.getNextId("carrinho");
+                    carrinho.Id = DBUtil.getNextId("carrinho");
                     String sql = "INSERT INTO carrinho(id, status, data, id_usuario) values (@id, @status, @data, @id_usuario)";
                     cmd = new SqlCommand(sql, conexao);
                 }
 
                 conexao.Open();
-                cmd.Parameters.AddWithValue("@id", Carrinho.Id);
-                cmd.Parameters.AddWithValue("@status", Carrinho.Status);
-                cmd.Parameters.AddWithValue("@data", Carrinho.Data);
-                cmd.Parameters.AddWithValue("@id_usuario", Carrinho.Usuario.Id);
+                cmd.Parameters.AddWithValue("@id", carrinho.Id);
+                cmd.Parameters.AddWithValue("@status", carrinho.Status);
+                cmd.Parameters.AddWithValue("@data", carrinho.Data);
+                cmd.Parameters.AddWithValue("@id_usuario", carrinho.Usuario.Id);
                 cmd.ExecuteNonQuery();
-                return true;
+
+                return carrinho;
             }
             catch (Exception e)
             {
                 Debug.WriteLine("Persistencia - Erro ao conectar ao banco de dados " + e.Message);
-                return false;
+                return null;
             }
             finally
             {

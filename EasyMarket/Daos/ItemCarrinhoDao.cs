@@ -112,6 +112,8 @@ namespace EasyMarket.Daos
 
         public static List<ItemCarrinho> BuscarPorCarrinho(long Id)
         {
+            Debug.Write(Id);
+
             List<ItemCarrinho> itens = new List<ItemCarrinho>();
 
             try
