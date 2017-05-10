@@ -19,7 +19,7 @@ namespace EasyMarket.Daos
             Itens.Valor = Convert.ToDecimal(dados.GetValue(1));
             Itens.Quantidade = Convert.ToInt32(dados.GetValue(2));
             DBUtil.closeConnection();
-            Itens.Carrinho = CarrinhoDao.BuscarPorId(Convert.ToInt64(dados.GetValue(3)));
+            Itens.Carrinho = CarrinhoDao.BuscarPorId(Convert.ToInt64(dados.GetValue(3)), false);
             DBUtil.closeConnection();
             Itens.Produto = ProdutoDao.BuscarPorId(Convert.ToInt64(dados.GetValue(4)));
             

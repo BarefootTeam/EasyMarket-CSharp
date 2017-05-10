@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -12,25 +13,27 @@ namespace EasyMarket.Models
         public DateTime Data { get; set; }
         public Usuario Usuario { get; set; }
         public List<ItemCarrinho> Itens { get; set; }
+        public String Total { get; set; }
+        public int Quantidade { get; set; }
         
-        public decimal Total()
+        public void CalcularTotal()
         {
             decimal total = 0;
             foreach(ItemCarrinho i in Itens)
             {
-                total += i.Valor;
+                total += (i.Valor * i.Quantidade);
             }
-            return total;
+            Total = String.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", total);
         }
 
-        public int Quantidade()
+        public void CalcularQuantidade()
         {
             int total = 0;
             foreach (ItemCarrinho i in Itens)
             {
                 total += i.Quantidade;
             }
-            return total;
+            Quantidade = total;
         }
 
         public ItemCarrinho BuscarItem(Produto p)

@@ -12,14 +12,18 @@ namespace EasyMarket.Daos
 {
     public class CarrinhoDao
     {
-        private static Carrinho getCarrinho(object[] dados)
+        private static Carrinho getCarrinho(object[] dados, bool selecionarItem)
         {
             Carrinho carrinho = new Carrinho();
             carrinho.Id = Convert.ToInt64(dados.GetValue(0));
             carrinho.Status = Convert.ToBoolean(dados.GetValue(1));
             carrinho.Data = Convert.ToDateTime(dados.GetValue(2));
             DBUtil.closeConnection();
-            carrinho.Itens = ItemCarrinhoDao.BuscarPorCarrinho(carrinho.Id);
+
+            if (selecionarItem)
+            {
+                carrinho.Itens = ItemCarrinhoDao.BuscarPorCarrinho(carrinho.Id);
+            }
             carrinho.Usuario = UsuarioDao.BuscarPorId(Convert.ToInt64(dados.GetValue(3)));
             return carrinho;
         }
@@ -51,7 +55,7 @@ namespace EasyMarket.Daos
                 // Percorre a as Linhas do Data Table
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    Lista.Add(getCarrinho(dt.Rows[i].ItemArray));
+                    Lista.Add(getCarrinho(dt.Rows[i].ItemArray, true));
                 }
 
 
@@ -89,7 +93,7 @@ namespace EasyMarket.Daos
 
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    Carrinho.Add(getCarrinho(ds.Tables[0].Rows[i].ItemArray));
+                    Carrinho.Add(getCarrinho(ds.Tables[0].Rows[i].ItemArray, true));
                 }
             }
             catch (Exception e)
@@ -152,7 +156,7 @@ namespace EasyMarket.Daos
         }
 
         
-        public static Carrinho BuscarPorId(long id)
+        public static Carrinho BuscarPorId(long id, bool selecionarItem)
         {
             Carrinho Carrinho = null;
             try
@@ -170,7 +174,7 @@ namespace EasyMarket.Daos
                 da.SelectCommand = cmd;
                 da.Fill(dt);
 
-                Carrinho = getCarrinho(dt.Rows[0].ItemArray);
+                Carrinho = getCarrinho(dt.Rows[0].ItemArray, selecionarItem);
             }
             catch (Exception e)
             {

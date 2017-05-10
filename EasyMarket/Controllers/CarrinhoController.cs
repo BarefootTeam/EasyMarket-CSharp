@@ -63,12 +63,62 @@ namespace EasyMarket.Controllers
                 p.FormatarValor();
 
                 // Reload carrinho com o novo item
-                Session["carrinho"] = CarrinhoDao.BuscarPorId(c.Id);
+                c = CarrinhoDao.BuscarPorId(c.Id, true);
+                c.CalcularQuantidade();
+                c.CalcularTotal();
+
+                Session["carrinho"] = c;
 
                 return Json(new {
                     Status = 1,
-                    Produto = p
+                    Produto = p,
+                    Carrinho = c
                 });
+            }
+
+            return Json(new { Status = 0 });
+        }
+
+        [HttpPost]
+        public ActionResult Remover(FormCollection collection)
+        {
+
+            Carrinho c = (Carrinho)Session["carrinho"];
+            Produto p = ProdutoDao.BuscarPorCodigo(collection["barcode"]);
+
+            if (p != null)
+            {
+                ItemCarrinho ic = c.BuscarItem(p);
+
+                if (ic != null)
+                {
+                    if(ic.Quantidade > 1)
+                    {
+                        ic.Quantidade--;
+                        ItemCarrinhoDao.Persistir(ic);
+                    }
+                    else
+                    {
+                        ItemCarrinhoDao.Excluir(ic);
+                    }
+
+                    p.FormatarValor();
+
+                    // Reload carrinho com o novo item
+                    c = CarrinhoDao.BuscarPorId(c.Id, true);
+                    c.CalcularQuantidade();
+                    c.CalcularTotal();
+
+                    Session["carrinho"] = c;
+
+                    return Json(new
+                    {
+                        Status = 1,
+                        Produto = p,
+                        Carrinho = c
+                    });
+                }
+
             }
 
             return Json(new { Status = 0 });

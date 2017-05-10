@@ -63,6 +63,11 @@ var showProduto = function (produto) {
     }, 3000);
 };
 
+var updateScreen = function (carrinho) {
+    $('.total-produtos').find('span').eq(1).html(carrinho.Quantidade);
+    $('.valor-total').find('span').eq(1).html(carrinho.Total);
+};
+
 $(function () {
 
     $('#iniciar-carrinho').click(function (event) {
@@ -130,6 +135,7 @@ $(function () {
                     console.log(response);
                     if (response.Status == 1) {
                         showProduto(response.Produto);
+                        updateScreen(response.Carrinho);
                     } else {
                         showMessage("Produto não encontrado");
                     }
@@ -142,7 +148,24 @@ $(function () {
     $('#remove-produto').click(function () {
         event.preventDefault();
         getBarCode(function (barcode) {
-            alert("Remove: " + barcode);
+
+            $.ajax({
+                type: 'POST',
+                url: '/Carrinho/Remover',
+                data: {
+                    barcode: barcode
+                },
+                success: function (response) {
+                    console.log(response);
+                    if (response.Status == 1) {
+                        showProduto(response.Produto);
+                        updateScreen(response.Carrinho);
+                    } else {
+                        showMessage("Produto não encontrado");
+                    }
+                }
+            });
+
         });
     });
 

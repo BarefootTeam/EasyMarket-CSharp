@@ -16,7 +16,7 @@ namespace EasyMarket.Models
 
         public String ValorFormatado()
         {
-            return String.Format(CultureInfo.GetCultureInfo("pt-BR"), "R$ {0:C}", Valor);
+            return String.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", Valor);
         }
 
     }
