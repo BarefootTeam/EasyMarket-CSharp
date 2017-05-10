@@ -136,7 +136,7 @@ namespace EasyMarket.Controllers
                 Carrinho c = new Carrinho();
                 c.Data = DateTime.Today;
                 c.Status = true;
-                c.Usuario = UsuarioDao.BuscarPorId(1L);
+                c.Cliente = ClienteDao.BuscarPorId(1L);
 
                 Carrinho carrinho = CarrinhoDao.PersistirRetorno(c);
                 if(carrinho != null)

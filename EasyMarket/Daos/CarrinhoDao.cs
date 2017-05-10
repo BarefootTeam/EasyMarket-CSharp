@@ -24,7 +24,7 @@ namespace EasyMarket.Daos
             {
                 carrinho.Itens = ItemCarrinhoDao.BuscarPorCarrinho(carrinho.Id);
             }
-            carrinho.Usuario = UsuarioDao.BuscarPorId(Convert.ToInt64(dados.GetValue(3)));
+            carrinho.Cliente = ClienteDao.BuscarPorId(Convert.ToInt64(dados.GetValue(3)));
             return carrinho;
         }
 
@@ -37,7 +37,7 @@ namespace EasyMarket.Daos
 
             try
             {
-                String sql = "SELECT id, status, data, id_usuario FROM carrinho";
+                String sql = "SELECT id, status, data, id_cliente FROM carrinho";
                 // Cira o Comando que sera executado no bancp de dados e indica qual conexao
                 SqlCommand cmd = new SqlCommand(sql, DBUtil.getConnection());
                 //Abre a Conexao com obanco de dados
@@ -79,7 +79,7 @@ namespace EasyMarket.Daos
 
             try
             {
-                String sql = "SELECT id, status, data, id_usuario FROM carrinho WHERE status = @status";
+                String sql = "SELECT id, status, data, id_cliente FROM carrinho WHERE status = @status";
                 SqlCommand cmd = new SqlCommand(sql, DBUtil.getConnection());
                 DBUtil.getConnection().Open();
                 cmd.Parameters.AddWithValue("@status", status);
@@ -124,14 +124,14 @@ namespace EasyMarket.Daos
 
                 if (carrinho.Id > 0)//update
                 {
-                      String sql = "UPDATE carrinho SET status = @status, data = @data, id_usuario = @id_usuario WHERE id = @id";
+                      String sql = "UPDATE carrinho SET status = @status, data = @data, id_cliente = @id_cliente WHERE id = @id";
                       cmd = new SqlCommand(sql, conexao);
                 }
                 else //insert
                 {
                     //Calcular proximo ID - Função da Classe DbUtil
                     carrinho.Id = DBUtil.getNextId("carrinho");
-                    String sql = "INSERT INTO carrinho(id, status, data, id_usuario) values (@id, @status, @data, @id_usuario)";
+                    String sql = "INSERT INTO carrinho(id, status, data, id_cliente) values (@id, @status, @data, @id_cliente)";
                     cmd = new SqlCommand(sql, conexao);
                 }
 
@@ -139,7 +139,7 @@ namespace EasyMarket.Daos
                 cmd.Parameters.AddWithValue("@id", carrinho.Id);
                 cmd.Parameters.AddWithValue("@status", carrinho.Status);
                 cmd.Parameters.AddWithValue("@data", carrinho.Data);
-                cmd.Parameters.AddWithValue("@id_usuario", carrinho.Usuario.Id);
+                cmd.Parameters.AddWithValue("@id_cliente", carrinho.Cliente.Id);
                 cmd.ExecuteNonQuery();
 
                 return carrinho;
@@ -162,7 +162,7 @@ namespace EasyMarket.Daos
             try
             {
                 SqlCommand cmd;
-                String sql = "SELECT id, status, data, id_usuario FROM carrinho WHERE id = @id";
+                String sql = "SELECT id, status, data, id_cliente FROM carrinho WHERE id = @id";
                 cmd = new SqlCommand(sql, DBUtil.getConnection());
                 DBUtil.getConnection().Open();
                 cmd.Parameters.AddWithValue("@id", id);

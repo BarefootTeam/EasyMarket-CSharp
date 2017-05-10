@@ -11,7 +11,7 @@ namespace EasyMarket.Models
         public long Id { get; set; }
         public Boolean Status { get; set; }
         public DateTime Data { get; set; }
-        public Usuario Usuario { get; set; }
+        public Cliente Cliente { get; set; }
         public List<ItemCarrinho> Itens { get; set; }
         public String Total { get; set; }
         public int Quantidade { get; set; }

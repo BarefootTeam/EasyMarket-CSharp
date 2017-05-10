@@ -60,7 +60,7 @@ var showProduto = function (produto) {
     setTimeout(function () {
         prod.hide();
         home.show();
-    }, 3000);
+    }, 2000);
 };
 
 var updateScreen = function (carrinho) {

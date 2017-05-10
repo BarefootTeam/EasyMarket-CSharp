@@ -200,6 +200,7 @@
     <Compile Include="Controllers\SupermercadoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Daos\CarrinhoDao.cs" />
+    <Compile Include="Daos\ClienteDao.cs" />
     <Compile Include="Daos\ItemCarrinhoDao.cs" />
     <Compile Include="Daos\ProdutoDao.cs" />
     <Compile Include="Daos\SupermercadoDao.cs" />
@@ -208,6 +209,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Carrinho.cs" />
+    <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ItemCarrinho.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Supermercado.cs" />
