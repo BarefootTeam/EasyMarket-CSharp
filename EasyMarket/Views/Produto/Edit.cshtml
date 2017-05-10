@@ -1,72 +1,60 @@
 ﻿@model EasyMarket.Models.Produto
 
+@Html.ValidationSummary(true)
+
 <div class="panel panel-info">
     <div class="panel-heading">Edição do Produto</div>
     <p></p>
-
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Edit", "Produto", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
     {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            <label for="INome" class="col-sm-2 control-label">Nome</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" placeholder="Nome" name="Nome" id="INome" value="@Model.Nome">
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cod, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Cod, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cod, "", new { @class = "text-danger" })
-                </div>
+        </div>        
+        <p></p>
+        <div class="form-group">
+            <label for="IDescricao" class="col-sm-2 control-label">Descricao</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" placeholder="Descricao" name="Descricao" id="IDescricao" value="@Model.Descricao">
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <p></p>
+        <div class="form-group">
+            <label for="IPrecoCusto" class="col-sm-2 control-label">Preço</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" placeholder="PrecoCusto" name="PrecoCusto" id="IPrecoCusto" value="@Model.PrecoCusto">
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PrecoCusto, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PrecoCusto, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PrecoCusto, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <p></p>
+        <div class="form-group">
+            <label for="IFoto" class="col-sm-2 control-label">Foto</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" placeholder="Foto" name="Foto" id="IFoto" value="@Model.Foto">
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Foto, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })
-                </div>
+        </div>        
+        <p></p>
+        <div class="form-group">
+            <label for="ICod" class="col-sm-2 control-label">Codigo de Barra</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" placeholder="Cod" name="Cod" id="ICod" value="@Model.Cod">
             </div>
-            <div class="form-group">
-                @Html.LabelForModel("Id do Supermercado", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @{
-                        long super = Model.Supermercado.Id;
-                    }
-                    <p class="form-control-static">@super</p>
-                </div>
+        </div>
+        <p></p>
+        <div class="form-group">
+            <label for="ISupermercado" class="col-sm-2 control-label"> Supermercado </label>
+            <div class="col-sm-9">
+                <input type="number" class="form-control" name="SupermercadoId" value="@Model.Supermercado.Id" disabled>                 
             </div>
-
-            <div class="form-group">
+            </div>
+            <p></p>           
+            <div class="row">
                 <div class="col-md-offset-2 col-md-10">
                     <a href="@Url.Action("Index", "Produto")" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>
                     <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Salvar </button>
+                    <p></p>
                 </div>
             </div>
+            }
         </div>
-     }
-    </div> 

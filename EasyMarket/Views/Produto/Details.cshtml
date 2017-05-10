@@ -7,12 +7,15 @@
          <table>
                 <tr>
                     <td>
-                        <img src="~/Utils/img/@Html.DisplayFor(model => model.Foto)" class="img-responsive" alt="Imagem responsiva" title="@Html.DisplayFor(model => model.Foto)">
+                        @{ 
+                            var extensao = ".jpg";
+                        }
+                        <img src="~/Content/Img/@Html.DisplayFor(model => model.Foto)@extensao" class="img-responsive" alt="Imagem responsiva" title="@Html.DisplayFor(model => model.Foto)">
                     </td>
                     <td>
                         <dl class="dl-horizontal">
                             <dt>
-                                @Html.DisplayNameFor(model => model.Nome)
+                                Nome do Produto
                             </dt>
 
                             <dd>
@@ -20,7 +23,7 @@
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.Cod)
+                                Codigo de Barra
                             </dt>
 
                             <dd>
@@ -28,7 +31,7 @@
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.Descricao)
+                                Descricao
                             </dt>
 
                             <dd>
@@ -36,7 +39,7 @@
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.PrecoCusto)
+                                Preço
                             </dt>
 
                             <dd>
@@ -47,13 +50,7 @@
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => model.Supermercado.Nome)
-                            </dd>
-                            <dt>
-                                Id Do Supermercado
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Supermercado.Id)
-                            </dd>
+                            </dd>                           
                         </dl>
                     </td>
                   </tr>

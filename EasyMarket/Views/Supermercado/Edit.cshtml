@@ -1,0 +1,33 @@
+﻿@model EasyMarket.Models.Supermercado
+
+@Html.ValidationSummary(true)
+
+<div class="panel panel-info">
+    <div class="panel-heading">Edição do Supermercado</div>
+    <p></p>
+    @using (Html.BeginForm("Edit", "Supermercado", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+    {
+        <div class="form-group">
+            <label for="INome" class="col-sm-2 control-label">Nome</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" placeholder="Nome" name="Nome" id="INome" value="@Model.Nome">
+            </div>
+        </div>
+        <p></p>
+        <div class="form-group">
+            <label for="ICnpj" class="col-sm-2 control-label">Cnpj</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" placeholder="Cnpj" name="Cnpj" id="ICnpj" value="@Model.Cnpj">
+            </div>
+        </div>
+        <p></p> 
+             <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    <a href="@Url.Action("Index", "Supermercado")" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>
+                    <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Salvar </button>
+                    <p></p>
+                </div>
+            </div>
+    }
+</div>
+

@@ -63,7 +63,7 @@ namespace EasyMarket.Controllers
                 p.Descricao = collection["Descricao"];
                 p.PrecoCusto = Convert.ToDecimal(collection["PrecoCusto"]);
                 p.Foto = collection["Foto"];
-                p.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt32(collection["Supermercado.Id"]));
+                p.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt64(collection["Supermercado.Id"]));
                                
                 if (!ProdutoDao.Persistir(p))
                 {
@@ -81,6 +81,7 @@ namespace EasyMarket.Controllers
         // GET: Produto/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.supermercados = SupermercadoDao.BuscarTodos();
             return View(ProdutoDao.BuscarPorId(id));
         }
 
@@ -90,8 +91,29 @@ namespace EasyMarket.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                Produto p = new Produto();
+                p.Supermercado = new Supermercado();
+                p.Id = id;
+                p.Nome = collection["Nome"];
+                p.Cod = collection["Cod"];
+                p.Descricao = collection["Descricao"];
+                p.PrecoCusto = Convert.ToDecimal(collection["PrecoCusto"]);
+                p.Formatado = Convert.ToString(p.PrecoCusto);
+                p.Foto = collection["Foto"];               
+                p.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt32(collection["Supermercado.Id"]));
+                if (p.Supermercado == null)
+                {
+                    Supermercado teste = new Supermercado();
+                    teste.Id = 1L;
+                    teste.Nome = "Makro";
+                    teste.Cnpj = "00100201203217";
+                    p.Supermercado = teste;
+                }
 
+                if (!ProdutoDao.Persistir(p))
+                {
+                    return View();
+                }
                 return RedirectToAction("Index");
             }
             catch

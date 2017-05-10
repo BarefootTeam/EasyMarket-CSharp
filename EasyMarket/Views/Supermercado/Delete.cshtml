@@ -1,0 +1,41 @@
+﻿@model EasyMarket.Models.Supermercado
+
+<div class="panel panel-info">
+  <div class="panel-heading"> Deletar Supermercado </div>
+    <div class="panel-body">
+        <h3>Tem certeza que deseja deletar este Supermercado?</h3>
+             <div>
+                    <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Nome)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Cnpj)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Cnpj)
+                                </dd>                               
+                            </dl>                       
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <a href="@Url.Action("Index", "Supermercado")" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>   &nbsp;
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Deletar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+
+

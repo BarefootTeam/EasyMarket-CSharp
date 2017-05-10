@@ -194,7 +194,6 @@ namespace EasyMarket.Daos
                 }
                 else //insert
                 {
-                    //Calcular proximo ID - Função da Classe DbUtil
                     Produto.Id = DBUtil.getNextId("produto");
                     String sql = "insert into produto(id,nome,cod,descricao,preco_custo,foto,id_supermercado) values (@id,@nome,@cod,@descricao,@preco_custo,@foto,@id_supermercado)";
                     cmd = new SqlCommand(sql, conexao);

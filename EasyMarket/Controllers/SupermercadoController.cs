@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EasyMarket.Daos;
+using EasyMarket.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,13 +13,13 @@ namespace EasyMarket.Controllers
         // GET: Supermercado
         public ActionResult Index()
         {
-            return View();
+            return View(SupermercadoDao.BuscarTodos());
         }
 
         // GET: Supermercado/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(SupermercadoDao.BuscarPorId(id));
         }
 
         // GET: Supermercado/Create
@@ -32,7 +34,13 @@ namespace EasyMarket.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                Supermercado s = new Supermercado();
+                s.Nome = collection["Nome"];
+                s.Cnpj = collection["Cnpj"];
+                if (!SupermercadoDao.Persistir(s))
+                {
+                    return View();
+                }
 
                 return RedirectToAction("Index");
             }
@@ -45,7 +53,7 @@ namespace EasyMarket.Controllers
         // GET: Supermercado/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(SupermercadoDao.BuscarPorId(id));
         }
 
         // POST: Supermercado/Edit/5
@@ -54,8 +62,14 @@ namespace EasyMarket.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-
+                Supermercado s = new Supermercado();
+                s.Id = id;
+                s.Nome = collection["Nome"];
+                s.Cnpj = collection["Cnpj"];
+                if (!SupermercadoDao.Persistir(s))
+                {
+                    return View();
+                }
                 return RedirectToAction("Index");
             }
             catch
@@ -67,7 +81,7 @@ namespace EasyMarket.Controllers
         // GET: Supermercado/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(SupermercadoDao.BuscarPorId(id));
         }
 
         // POST: Supermercado/Delete/5
@@ -76,7 +90,7 @@ namespace EasyMarket.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                SupermercadoDao.Excluir(id);
 
                 return RedirectToAction("Index");
             }

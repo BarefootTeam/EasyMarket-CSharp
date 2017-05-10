@@ -1,33 +1,41 @@
 ﻿@model IEnumerable<EasyMarket.Models.Supermercado>
+<div class="panel panel-info">
+    <div class="panel-heading"> Lista dos Supermercado Cadatrados </div>
+   
+     <div class="btn-group" role="group" aria-label="">
+        <div class="btn-group" role="group">
+            <a href="@Url.Action("Create", "Supermercado")" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; Cadastrar Supermercado  &nbsp; </a>
+        </div>
+   </div>
+    <div>
+        <table class="table">
+            <tr>
+                 <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cnpj)
+                </th>
+                <th></th>
+            </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cnpj)
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cnpj)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Deletar", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cnpj)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+    </div>
+</div>
