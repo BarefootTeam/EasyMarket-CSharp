@@ -1,43 +1,31 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿
+  <div class="jumbotron">
+    <center><h2>EasyMarket</h2></center>
+       <div>
+           <form class="form-inline" action="@Url.Action("Index", "Carrinho")" method="post">
+            <div>
+                <div class="form-group">
+                    <label for="Label_Nome">Nome</label>
+                    <input type="text" class="form-control" id="Nome" placeholder="Insira o Seu Nome ">
+                </div>
 
-<div class="jumbotron" >
-    <center><h2>EasyMarket</h2></center>    
-      <div>
-          <table class="table">
-              <tr>
-                  <td>
-                      <form class="form-inline" action="@Url.Action("CarrinhoCompras", "Carrinho")" method="post">
+                <div class="form-group">
+                    <label for="Label_Cpf">Cpf</label>
+                    <input type="text" class="form-control" id="Cpf" placeholder="Insira o Seu Cpf ">
+                </div>
 
-                          <div class="form-group">
-                              <label for="Label_Nome">Nome</label>
-                              <input type="text" class="form-control" id="Nome" placeholder="Insira o Seu Nome ">
-                          </div>
-                          <div class="form-group">
-                              <label for="Label_Cpf">Cpf</label>
-                              <input type="text" class="form-control" id="Cpf" placeholder="Insira o Seu Cpf ">
-                          </div>
-                          <div class="form-group">
-                              <br /> &nbsp;
-                              <button type="submit" class="btn btn-primary"> Iniciar Compras &nbsp;&nbsp; <span class="glyphicon glyphicon-shopping-cart"></span> </button> &nbsp;
-                              <a href="@Url.Action("CarrinhoCompras", "Carrinho")" type="submit" class="btn btn-success"> Convidado </a>
-
-                          </div>
-
-
-                      </form>
-                  </td>
-
-              </tr>
-
-
-          </table>
+                <div class="form-group">
+                    <br /> &nbsp;
+                    <button type="submit" class="btn btn-primary"> Iniciar Compras &nbsp;&nbsp; <span class="glyphicon glyphicon-shopping-cart"></span> </button> &nbsp;
+                    <a href="@Url.Action("Create", "Cliente")" type="submit" class="btn btn-success"> Convidado </a>
+                </div>
+            </div>
+        </form>
+                
+            </div>
 </div>
 
 
-    
-</div>
 
 
 

@@ -1,4 +1,4 @@
-﻿@model EasyMarket.Models.Usuario
+﻿@model EasyMarket.Models.Cliente
 
 @Html.ValidationSummary(true)
 
@@ -7,20 +7,6 @@
     <p></p>
     @using (Html.BeginForm("Edit", "Cliente", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
     {
-        <div class="form-group">
-            <label for="ILogin" class="col-sm-2 control-label">Login</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" placeholder="Login" name="Login" id="ILogin" value="@Model.Login">
-            </div>
-        </div>
-        <p></p>
-        <div class="form-group">
-            <label for="ISenha" class="col-sm-2 control-label">Senha</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Senha" name="Senha" id="ISenha" value="@Model.Senha">
-            </div>
-        </div>
-        <p></p>
         <div class="form-group">
             <label for="INome" class="col-sm-2 control-label">Nome</label>
             <div class="col-sm-3">
@@ -37,7 +23,7 @@
         <p></p>
         <div class="row">
             <div class="col-md-offset-2 col-md-10">
-                <a href="@Url.Action("Index", "Usuário")" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>
+                <a href="@Url.Action("Index", "Cliente")" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>
                 <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Salvar </button>
                 <p></p>
             </div>

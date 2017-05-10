@@ -88,6 +88,7 @@
     <Compile Include="Daos\SupermercadoDaoTest.cs" />
     <Compile Include="Daos\ProdutoDaoTest.cs" />
     <Compile Include="Daos\ItemCarrinhoDaoTest.cs" />
+    <Compile Include="Daos\ClienteDaoTest.cs" />
     <Compile Include="Daos\UsuarioDaoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />

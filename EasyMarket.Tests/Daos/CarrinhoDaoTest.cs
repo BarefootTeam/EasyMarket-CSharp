@@ -22,8 +22,8 @@ namespace EasyMarket.Tests.Daos
         public void PersistirInserir()
         {
             Carrinho c = new Carrinho();
-            c.Usuario = new Usuario();
-            c.Usuario.Id = 2L;
+            c.Cliente = new Cliente();
+            c.Cliente.Id = 2L;
             c.Status = true;
             c.Data = new DateTime(2000,01,01);
             Assert.IsTrue(CarrinhoDao.Persistir(c));
@@ -33,8 +33,8 @@ namespace EasyMarket.Tests.Daos
         public void PersistirAtualizar()
         {
             Carrinho c = new Carrinho();
-            c.Usuario = new Usuario();
-            c.Usuario.Id = 1L;
+            c.Cliente = new Cliente();
+            c.Cliente.Id = 1L;
             c.Id = CarrinhoDao.getLastId();
             c.Status = true;
             c.Data = new DateTime(2050, 01, 01);
@@ -44,7 +44,7 @@ namespace EasyMarket.Tests.Daos
         [TestMethod]
         public void BuscarID()
         {
-            Carrinho c = CarrinhoDao.BuscarPorId(1L);
+            Carrinho c = CarrinhoDao.BuscarPorId(1L,true);
             Assert.IsNotNull(c);
         }
 

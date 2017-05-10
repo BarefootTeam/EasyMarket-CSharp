@@ -1,21 +1,15 @@
-﻿@model IEnumerable<EasyMarket.Models.Usuario>
+﻿@model IEnumerable<EasyMarket.Models.Cliente>
 <div class="panel panel-info">
-    <div class="panel-heading"> Lista dos Usuários Cadatrados </div>
+    <div class="panel-heading"> Lista dos Clientes Cadatrados </div>
 
     <div class="btn-group" role="group" aria-label="">
         <div class="btn-group" role="group">
-            <a href="@Url.Action("Create", "Usuario")" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; Cadastrar Usuario  &nbsp; </a>
+            <a href="@Url.Action("Create", "Cliente")" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; Cadastrar Cliente  &nbsp; </a>
         </div>
     </div>
     <div>
         <table class="table">
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Login)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Senha)
-                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Nome)
                 </th>
@@ -28,12 +22,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Login)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Senha)
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
