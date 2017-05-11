@@ -13,7 +13,7 @@ namespace EasyMarket.Controllers
         // GET: Compra
         public ActionResult Index()
         {            
-            return View();
+            return View(CompraDao.BuscarTodasCompras());
         }
 
         // GET: Compra/Details/5
