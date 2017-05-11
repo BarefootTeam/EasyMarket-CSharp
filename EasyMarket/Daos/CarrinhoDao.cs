@@ -28,7 +28,7 @@ namespace EasyMarket.Daos
             return carrinho;
         }
 
-
+        
         public static List<Carrinho> BuscarTodos()
         {
             // Cria a Lista que ira retornar os Objetos da Tabela Passado Por Paramêtro, do banco de da dados

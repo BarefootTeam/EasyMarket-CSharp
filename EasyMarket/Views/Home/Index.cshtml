@@ -1,30 +1,32 @@
-﻿
+﻿@model EasyMarket.Models.Cliente
+
   <div class="jumbotron">
     <center><h2>EasyMarket</h2></center>
        <div>
-           <form class="form-inline" action="@Url.Action("Index", "Carrinho")" method="post">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-inline", @role = "form" }))
+        {
+            @Html.ValidationSummary(true)
             <div>
                 <div class="form-group">
                     <label for="Label_Nome">Nome</label>
-                    <input type="text" class="form-control" id="Nome" placeholder="Insira o Seu Nome ">
+                    <input type="text" class="form-control" id="Nome" name="Nome"  placeholder="Insira o Seu Nome ">
                 </div>
 
                 <div class="form-group">
                     <label for="Label_Cpf">Cpf</label>
-                    <input type="text" class="form-control" id="Cpf" placeholder="Insira o Seu Cpf ">
+                    <input type="text" class="form-control" id="Cpf" name="Cpf" placeholder="Insira o Seu Cpf ">
                 </div>
 
                 <div class="form-group">
                     <br /> &nbsp;
                     <button type="submit" class="btn btn-primary"> Iniciar Compras &nbsp;&nbsp; <span class="glyphicon glyphicon-shopping-cart"></span> </button> &nbsp;
-                    <a href="@Url.Action("Create", "Cliente")" type="submit" class="btn btn-success"> Convidado </a>
+                    <button type="submit" class="btn btn-success" name="Convidado"> Convidado &nbsp;&nbsp; <span class="glyphicon glyphicon-user"></span> </button> &nbsp;                    
                 </div>
             </div>
-        </form>
+           }
                 
             </div>
 </div>
-
 
 
 

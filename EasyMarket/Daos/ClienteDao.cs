@@ -67,8 +67,13 @@ namespace EasyMarket.Daos
             return Lista;
 
         }
-
         public static Boolean Persistir(Cliente cliente)
+        {
+            return PersistirRetorno(cliente) != null;
+
+        }
+
+        public static Cliente PersistirRetorno(Cliente cliente)
         {
             SqlConnection conexao = DBUtil.getConnection();
             try
@@ -94,12 +99,12 @@ namespace EasyMarket.Daos
                 cmd.Parameters.AddWithValue("@nome", cliente.Nome);
                 cmd.Parameters.AddWithValue("@cpf", cliente.Cpf);
                 cmd.ExecuteNonQuery();
-                return true;
+                return cliente;
             }
             catch (Exception e)
             {
                 Debug.WriteLine("Persistencia - Erro ao conectar ao banco de dados" + e.Message);
-                return false;
+                return null;
             }
             finally
             {
@@ -119,6 +124,39 @@ namespace EasyMarket.Daos
                 cmd = new SqlCommand(sql, DBUtil.getConnection());
                 DBUtil.getConnection().Open();
                 cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+
+                DataTable dt = new DataTable();
+
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+
+                cliente = getCliente(dt.Rows[0].ItemArray);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Erro ao buscar por id o Usuário " + e.Message);
+            }
+            finally
+            {
+                DBUtil.closeConnection();
+            }
+
+            return cliente;
+        }
+
+        public static Cliente BuscarPorCpf(String cpf)
+        {
+            Cliente cliente = null;
+            try
+            {
+                SqlCommand cmd;
+                String sql = "SELECT id, nome, cpf FROM cliente where cpf=@cpf";
+
+                cmd = new SqlCommand(sql, DBUtil.getConnection());
+                DBUtil.getConnection().Open();
+                cmd.Parameters.AddWithValue("@cpf", cpf);
                 cmd.ExecuteNonQuery();
 
                 DataTable dt = new DataTable();

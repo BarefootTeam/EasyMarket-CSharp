@@ -5,7 +5,7 @@
 <div class="panel panel-info">
     <div class="panel-heading">Edição do Clientes</div>
     <p></p>
-    @using (Html.BeginForm("Edit", "Cliente", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+    @using (Html.BeginForm("Edit", "Usuario", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
     {
         <div class="form-group">
             <label for="ILogin" class="col-sm-2 control-label">Login</label>
@@ -37,7 +37,7 @@
         <p></p>
         <div class="row">
             <div class="col-md-offset-2 col-md-10">
-                <a href="@Url.Action("Index", "Usuário")" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>
+                <a href="@Url.Action("Index", "Usuario")" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>
                 <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Salvar </button>
                 <p></p>
             </div>

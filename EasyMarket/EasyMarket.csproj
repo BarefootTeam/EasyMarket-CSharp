@@ -196,6 +196,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CarrinhoController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\SupermercadoController.cs" />
@@ -223,6 +224,13 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\arroz.jpg" />
+    <Content Include="Content\img\bombril.jpg" />
+    <Content Include="Content\img\catchup.jpg" />
+    <Content Include="Content\img\creme_de_leite.jpg" />
+    <Content Include="Content\img\danone.jpg" />
+    <Content Include="Content\img\garoto.jpg" />
+    <Content Include="Content\img\toddy.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -247,13 +255,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Utils\img\arroz.jpg" />
-    <Content Include="Utils\img\bombril.jpg" />
-    <Content Include="Utils\img\catchup.jpg" />
-    <Content Include="Utils\img\creme_de_leite.jpg" />
-    <Content Include="Utils\img\danone.jpg" />
-    <Content Include="Utils\img\garoto.jpg" />
-    <Content Include="Utils\img\toddy.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -296,6 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Compra\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
