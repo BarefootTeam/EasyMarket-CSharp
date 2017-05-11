@@ -18,13 +18,6 @@ namespace EasyMarket.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection collection)
         {
-            if (collection["Convidado"]  != null)
-            {
-                Cliente convidado = new Cliente();
-                convidado = ClienteDao.BuscarPorId(1L);
-                Session["cliente"] = convidado;
-                return RedirectToAction("Index", "Carrinho");
-            }
 
             Cliente c = ClienteDao.BuscarPorCpf(collection["Cpf"]);
 
@@ -39,15 +32,14 @@ namespace EasyMarket.Controllers
                 c.Nome = collection["Nome"];
                 c.Cpf = collection["Cpf"];
 
-		            c = ClienteDao.PersistirRetorno(c);
+                c = ClienteDao.PersistirRetorno(c);
 
-		        if(c != null) {
-			        Session["cliente"] = c;
-	                return RedirectToAction("Index", "Carrinho");
-
-		            }else{
-	                return RedirectToAction("Index");
-		            }
+                if(c != null) {
+                    Session["cliente"] = c;
+                    return RedirectToAction("Index", "Carrinho");
+                }else{
+                    return RedirectToAction("Index");
+                }
             }
 
         }

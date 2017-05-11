@@ -137,12 +137,17 @@ namespace EasyMarket.Controllers
                 c.Data = DateTime.Today;
                 c.Status = true;
 
-                // c.Cliente = ClienteDao.BuscarPorId(1L);
-                // Pegando o Cliente da Sessão ** Célio Conferi aí **
-
-                c.Cliente = (Cliente)Session["cliente"];
+                if(Session["cliente"] != null)
+                {
+                    c.Cliente = (Cliente)Session["cliente"];
+                }
+                else
+                {
+                    c.Cliente = ClienteDao.BuscarPorId(1L);
+                }
 
                 Carrinho carrinho = CarrinhoDao.PersistirRetorno(c);
+
                 if(carrinho != null)
                 {
                     Session["carrinho"] = carrinho;
