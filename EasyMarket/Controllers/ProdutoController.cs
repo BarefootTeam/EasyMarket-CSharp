@@ -47,7 +47,6 @@ namespace EasyMarket.Controllers
         public ActionResult Create()
         {
             ViewBag.supermercados = SupermercadoDao.BuscarTodos();
-            ViewBag.produtos = ProdutoDao.BuscarTodos();
             return View();
         }
         
@@ -101,15 +100,7 @@ namespace EasyMarket.Controllers
                 p.Formatado = Convert.ToString(p.PrecoCusto);
                 p.Foto = collection["Foto"];               
                 p.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt32(collection["Supermercado.Id"]));
-                if (p.Supermercado == null)
-                {
-                    Supermercado teste = new Supermercado();
-                    teste.Id = 1L;
-                    teste.Nome = "Makro";
-                    teste.Cnpj = "00100201203217";
-                    p.Supermercado = teste;
-                }
-
+               
                 if (!ProdutoDao.Persistir(p))
                 {
                     return View();

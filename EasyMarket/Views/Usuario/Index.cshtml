@@ -16,6 +16,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Cpf)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Supermercado.Nome)
+                </th>
                 <th></th>
             </tr>
 
@@ -27,6 +30,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Cpf)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Supermercado.Nome)
                     </td>
                     <td>
                         @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |

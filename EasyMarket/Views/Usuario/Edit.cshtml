@@ -3,7 +3,7 @@
 @Html.ValidationSummary(true)
 
 <div class="panel panel-info">
-    <div class="panel-heading">Edição do Clientes</div>
+    <div class="panel-heading">Edição do Usuário</div>
     <p></p>
     @using (Html.BeginForm("Edit", "Usuario", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
     {
@@ -35,6 +35,13 @@
             </div>
         </div>
         <p></p>
+        <div class="form-group">
+            <label for="ISupermercado" class="col-sm-2 control-label"> Supermercado </label>
+            <div class="col-sm-9">
+                <input type="number" class="form-control" name="SupermercadoId" value="@Model.Supermercado.Id" disabled>
+            </div>
+        </div>
+            <p></p>
         <div class="row">
             <div class="col-md-offset-2 col-md-10">
                 <a href="@Url.Action("Index", "Usuario")" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>

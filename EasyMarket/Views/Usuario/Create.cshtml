@@ -33,13 +33,28 @@
                 <input type="text" class="form-control" placeholder="Cpf" name="Cpf" id="ICpf">
             </div>
         </div>
-            <p></p>
-                <div class="row">
-                    <div class="col-md-offset-2 col-md-10">
-                        <a href="@Url.Action("Index", "Usuario")" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>
-                        <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Salvar </button>
-                        <p></p>
-                    </div>
+        <p></p>
+            <div class="form-group">
+                <label for="ISupermercado" class="col-sm-2 control-label"> Supermercado </label>
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(model => model.Supermercado.Id,
+                ((IEnumerable<EasyMarket.Models.Supermercado>)ViewBag.supermercados).
+                Select(i => new SelectListItem
+                {
+                    Text = i.Nome,
+                    Value = i.Id.ToString(),
+                    Selected = (Model != null) && (i.Id == Model.Supermercado.Id)
+                }), "Escolha uma opção...", new { @class = "form-control", required = "required", name = "SupermercadoId" }
+                )
                 </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    <a href="@Url.Action("Index", "Usuario")" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>
+                    <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Salvar </button>
+                    <p></p>
+                </div>
+            </div>
     }
 </div>

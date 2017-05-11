@@ -25,6 +25,7 @@ namespace EasyMarket.Controllers
         // GET: Usuario/Create
         public ActionResult Create()
         {
+            ViewBag.supermercados = SupermercadoDao.BuscarTodos();
             return View();
         }
 
@@ -39,6 +40,7 @@ namespace EasyMarket.Controllers
                 u.Senha = collection["Senha"];
                 u.Nome = collection["Nome"];
                 u.Cpf = collection["Cpf"];
+                u.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt64(collection["Supermercado.Id"]));
 
                 if (!UsuarioDao.Persistir(u))
             {
@@ -55,6 +57,7 @@ namespace EasyMarket.Controllers
         // GET: Usuario/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.supermercados = SupermercadoDao.BuscarTodos();
             return View(UsuarioDao.BuscarPorId(id));
         }
 
@@ -70,6 +73,7 @@ namespace EasyMarket.Controllers
                 u.Senha = collection["Senha"];
                 u.Nome = collection["Nome"];
                 u.Cpf = collection["Cpf"];
+                u.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt64(collection["Supermercado.Id"]));
 
                 if (!UsuarioDao.Persistir(u))
                 {

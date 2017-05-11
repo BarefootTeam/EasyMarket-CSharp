@@ -20,8 +20,8 @@ namespace EasyMarket.Daos
             Usuario.Senha = Convert.ToString(dados.GetValue(2));
             Usuario.Nome = Convert.ToString(dados.GetValue(3));
             Usuario.Cpf = Convert.ToString(dados.GetValue(4));
-        //    DBUtil.closeConnection();
-         //   Usuario.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt64(dados.GetValue(5)));
+            DBUtil.closeConnection();
+            Usuario.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt64(dados.GetValue(5)));
             
             return Usuario;
         }
@@ -35,9 +35,7 @@ namespace EasyMarket.Daos
 
             try
             {
-                //      String sql = "SELECT id, login, senha, nome, cpf, id_supermercado FROM usuario";
-                     String sql = "SELECT id, login, senha, nome, cpf FROM usuario";
-                // Cira o Comando que sera executado no bancp de dados e indica qual conexao
+                String sql = "SELECT id, login, senha, nome, cpf, id_supermercado FROM usuario";
                 SqlCommand cmd = new SqlCommand(sql, DBUtil.getConnection());
                 //Abre a Conexao com obanco de dados
                 DBUtil.getConnection().Open();
@@ -81,19 +79,15 @@ namespace EasyMarket.Daos
 
                 if (Usuario.Id > 0)//update
                 {
-                    //OBs: Testando Gravar Usuario sem Supermercado depois Modficar !!!!!!
-
-                //    String sql = "update usuario set login = @login, senha = @senha, nome = @nome, cpf = @cpf, id_supermercado = @id_supermercado WHERE id = @id";
-                    String sql = "update usuario set login = @login, senha = @senha, nome = @nome, cpf = @cpf  WHERE id = @id";
-
+                    String sql = "update usuario set login = @login, senha = @senha, nome = @nome, cpf = @cpf, id_supermercado = @id_supermercado WHERE id = @id";
+                   
                     cmd = new SqlCommand(sql, conexao);
                 }
                 else //insert
                 {
                     //Calcular proximo ID - Função da Classe DbUtil
                     Usuario.Id = DBUtil.getNextId("usuario");
-                    //  String sql = "insert into usuario(id,login,senha,nome,cpf,id_supermercado) values (@id,@login,@senha,@nome,@cpf,@id_supermercado)";
-                        String sql = "insert into usuario(id,login,senha,nome,cpf) values (@id,@login,@senha,@nome,@cpf)";
+                        String sql = "insert into usuario(id,login,senha,nome,cpf,id_supermercado) values (@id,@login,@senha,@nome,@cpf,@id_supermercado)";
 
                     cmd = new SqlCommand(sql, conexao);
                 }
@@ -104,7 +98,7 @@ namespace EasyMarket.Daos
                 cmd.Parameters.AddWithValue("@senha", Usuario.Senha);
                 cmd.Parameters.AddWithValue("@nome", Usuario.Nome);
                 cmd.Parameters.AddWithValue("@cpf", Usuario.Cpf);
-           //     cmd.Parameters.AddWithValue("@id_supermercado", Usuario.Supermercado.Id);
+                cmd.Parameters.AddWithValue("@id_supermercado", Usuario.Supermercado.Id);
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -126,8 +120,7 @@ namespace EasyMarket.Daos
             try
             {
                 SqlCommand cmd;
-            //    String sql = "SELECT id, login, senha, nome, cpf, id_supermercado FROM usuario where id=@id";
-                String sql = "SELECT id, login, senha, nome, cpf FROM usuario where id=@id";
+                String sql = "SELECT id, login, senha, nome, cpf, id_supermercado FROM usuario where id=@id";
 
                 cmd = new SqlCommand(sql, DBUtil.getConnection());
                 DBUtil.getConnection().Open();
@@ -160,8 +153,7 @@ namespace EasyMarket.Daos
             try
             {
                 SqlCommand cmd;
-             //   String sql = "SELECT id, login, senha, nome, cpf, id_supermercado FROM usuario where login = @login ";
-                String sql = "SELECT id, login, senha, nome, cpf FROM usuario where login = @login ";
+                String sql = "SELECT id, login, senha, nome, cpf, id_supermercado FROM usuario where login = @login ";
 
                 cmd = new SqlCommand(sql, DBUtil.getConnection());
                 DBUtil.getConnection().Open();

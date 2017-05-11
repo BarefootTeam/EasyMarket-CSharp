@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<EasyMarket.Models.Compra>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<div class="panel panel-info">
+
+<div class="panel-heading">
+    Lista das Compras
+</div>
+    <table class="table">
     <tr>
         <th>
             Carrinho
@@ -32,14 +34,17 @@
             @Html.DisplayFor(modelItem => item.Total)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.data)
+            @{
+                var data = @Html.DisplayFor(modelItem => item.data).ToString();
+            }
+             @data.AsDateTime().ToShortDateString()                       
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Detalhes", "", new { id=item.Id }) |
+            @Html.ActionLink("Deletar", "", new { id=item.Id })
         </td>
     </tr>
 }
 
 </table>
+</div>
