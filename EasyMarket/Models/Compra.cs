@@ -9,7 +9,8 @@ namespace EasyMarket.Models
     {
         public long Id { get; set; }
         public String Nome { get; set; }
-        public decimal Total { get; set; }
+        public decimal Valor { get; set; }
         public DateTime data { get; set; }
+        
     }
 }

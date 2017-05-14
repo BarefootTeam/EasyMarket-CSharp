@@ -1,0 +1,27 @@
+﻿@model IEnumerable<EasyMarket.Models.Compra>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        Lista de Produtos 
+    </div>
+        <table class="table table-responsive">
+            <tr>
+                <td> # </td>
+                <td><b> Nome Produto </b></td>
+                <td><b> Preço </b></td>
+            </tr>
+            @{ var n = 1;
+            foreach (var item in Model)
+            {
+                    <tr>
+                        <td> @n </td>
+                        <td> @Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td> <b>R$ </b> - @Html.DisplayFor(modelItem => item.Valor)</td>
+                    </tr>
+                    n++;
+                }
+            }        </table>
+    <div class="btn">
+        <a href="@Url.Action("Index", "Compra")" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar</a> &nbsp;
+    </div>
+       </div>    

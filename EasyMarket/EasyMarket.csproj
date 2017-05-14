@@ -231,7 +231,10 @@
     <Content Include="Content\img\catchup.jpg" />
     <Content Include="Content\img\creme_de_leite.jpg" />
     <Content Include="Content\img\danone.jpg" />
+    <Content Include="Content\img\dove.jpg" />
     <Content Include="Content\img\garoto.jpg" />
+    <Content Include="Content\img\Perfume.jpg" />
+    <Content Include="Content\img\Tial.jpg" />
     <Content Include="Content\img\toddy.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -297,6 +300,7 @@
     <Content Include="Views\Cliente\Edit.cshtml" />
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Compra\Index.cshtml" />
+    <Content Include="Views\Compra\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

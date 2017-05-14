@@ -5,7 +5,7 @@
 <div class="panel-heading">
     Lista das Compras
 </div>
-    <table class="table">
+    <table class="table table-responsive">
     <tr>
         <th>
             Carrinho
@@ -31,7 +31,7 @@
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Total)
+            @Html.DisplayFor(modelItem => item.Valor)
         </td>
         <td>
             @{
@@ -40,8 +40,7 @@
              @data.AsDateTime().ToShortDateString()                       
         </td>
         <td>
-            @Html.ActionLink("Detalhes", "", new { id=item.Id }) |
-            @Html.ActionLink("Deletar", "", new { id=item.Id })
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) 
         </td>
     </tr>
 }

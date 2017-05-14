@@ -19,7 +19,7 @@ namespace EasyMarket.Controllers
         // GET: Compra/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(CompraDao.BuscarPorCarrinho(id));
         }
 
         // GET: Compra/Create
