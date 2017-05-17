@@ -76,6 +76,7 @@ $(function () {
         var botao1 = $(this);
         var botao2 = $('#finalizar-carrinho');
         var botao3 = $('#add-produto, #remove-produto');
+        var home   = $('.home');
 
         botao1.html('AGUARDE');
         botao1.addClass('disabled');
@@ -90,6 +91,7 @@ $(function () {
                     botao1.removeClass("disabled");
                     botao2.show();
                     botao3.show();
+                    home.show();
                 }
             }
         });
@@ -102,6 +104,7 @@ $(function () {
         var botao1 = $(this);
         var botao2 = $('#iniciar-carrinho');
         var botao3 = $('#add-produto, #remove-produto');
+        var home   = $('.home');
 
         botao1.html('AGUARDE');
         botao1.addClass('disabled');
@@ -116,6 +119,13 @@ $(function () {
                     botao1.removeClass("disabled");
                     botao2.show();
                     botao3.hide();
+
+                    updateScreen({
+                        Quantidade: 0,
+                        Total: 'R$0,00'
+                    });
+
+                    home.hide();
                 }
             }
         });
