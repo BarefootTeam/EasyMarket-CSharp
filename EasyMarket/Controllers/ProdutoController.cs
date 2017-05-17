@@ -2,6 +2,8 @@
 using EasyMarket.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -52,16 +54,26 @@ namespace EasyMarket.Controllers
         
         // POST: Produto/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, HttpPostedFileBase file)
         {
             try
             {
+
+                String foto = "sem-imagem.jpg";
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    foto = Path.GetFileName(file.FileName);
+                    String path = Path.Combine(Server.MapPath("~/Content/Uploads/"), foto);
+                    file.SaveAs(path);
+                }
+
                 Produto p = new Produto();
                 p.Nome = collection["Nome"];
                 p.Cod = collection["Cod"];
                 p.Descricao = collection["Descricao"];
                 p.PrecoCusto = Convert.ToDecimal(collection["PrecoCusto"]);
-                p.Foto = collection["Foto"];
+                p.Foto = foto;
                 p.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt64(collection["Supermercado.Id"]));
                                
                 if (!ProdutoDao.Persistir(p))
@@ -71,9 +83,10 @@ namespace EasyMarket.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                Debug.WriteLine(e.StackTrace);
+                return RedirectToAction("Create");
             }
         }
 
@@ -86,25 +99,29 @@ namespace EasyMarket.Controllers
 
         // POST: Produto/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection, HttpPostedFileBase file)
         {
             try
             {
-                Produto p = new Produto();
-                p.Supermercado = new Supermercado();
-                p.Id = id;
+                Produto p = ProdutoDao.BuscarPorId(id);
                 p.Nome = collection["Nome"];
                 p.Cod = collection["Cod"];
                 p.Descricao = collection["Descricao"];
                 p.PrecoCusto = Convert.ToDecimal(collection["PrecoCusto"]);
-                p.Formatado = Convert.ToString(p.PrecoCusto);
-                p.Foto = collection["Foto"];               
                 p.Supermercado = SupermercadoDao.BuscarPorId(Convert.ToInt32(collection["Supermercado.Id"]));
+
+                if(file != null && file.ContentLength > 0)
+                {
+                    p.Foto = Path.GetFileName(file.FileName);
+                    String path = Path.Combine(Server.MapPath("~/Content/Uploads/"), p.Foto);
+                    file.SaveAs(path);
+                }
                
                 if (!ProdutoDao.Persistir(p))
                 {
                     return View();
                 }
+
                 return RedirectToAction("Index");
             }
             catch

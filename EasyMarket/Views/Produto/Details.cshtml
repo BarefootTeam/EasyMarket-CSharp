@@ -7,10 +7,7 @@
          <table>
                 <tr>
                     <td>
-                        @{ 
-                            var extensao = ".jpg";
-                        }
-                        <img src="~/Content/Img/@Html.DisplayFor(model => model.Foto)@extensao" class="img-responsive" alt="Imagem responsiva" title="@Html.DisplayFor(model => model.Foto)">
+                        <img src="~/Content/Uploads/@Html.DisplayFor(model => model.Foto)" class="img-responsive" alt="Imagem responsiva" title="@Html.DisplayFor(model => model.Foto)">
                     </td>
                     <td>
                         <dl class="dl-horizontal">

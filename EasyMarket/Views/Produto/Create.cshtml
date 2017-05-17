@@ -3,7 +3,7 @@
 <div class="panel panel-info">
     <div class="panel-heading">Cadastro do Produto</div>
     <p></p>
-    @using (Html.BeginForm("Create", "Produto", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+    @using (Html.BeginForm("Create", "Produto", FormMethod.Post, new { @class = "form-horizontal", @role = "form", @enctype = "multipart/form-data" }))
     {
            @Html.ValidationSummary(true)
 
@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="IFoto" class="col-sm-2 control-label">Foto</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="Foto" name="Foto" id="IFoto">
+                            <input type="file" class="form-control" placeholder="Foto" name="file" id="IFoto">
                         </div>
                     </div>
                     <p></p>
@@ -39,16 +39,16 @@
              <div class="form-group">
                  <label for="ISupermercado" class="col-sm-2 control-label"> Supermercado </label>
                     <div class="col-sm-9">
-                 @Html.DropDownListFor(model => model.Supermercado.Id,
+                        @Html.DropDownListFor(model => model.Supermercado.Id,
                 ((IEnumerable<EasyMarket.Models.Supermercado>)ViewBag.supermercados).
                 Select(i => new SelectListItem
                 {
                     Text = i.Nome,
                     Value = i.Id.ToString(),
                     Selected = (Model != null) && (i.Id == Model.Supermercado.Id)
-                }), "Escolha uma opção...", new { @class = "form-control", required = "required" , name = "SupermercadoId"}
-                )        
-            </div>    
+                }), "Escolha uma opção...", new { @class = "form-control", required = "required", name = "SupermercadoId" }
+                )
+                    </div> 
            </div>                       
                  <p></p>  
                  <div class="form-group">

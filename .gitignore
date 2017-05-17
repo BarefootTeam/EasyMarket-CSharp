@@ -1,4 +1,4 @@
-###################
+﻿###################
 # compiled source #
 ###################
 *.com
@@ -76,3 +76,6 @@ _[Ss]cripts
 
 #####
 DBSource.cs
+
+!EasyMarket/Content/Uploads/sem-imagem.jpg
+EasyMarket/Content/Uploads/*

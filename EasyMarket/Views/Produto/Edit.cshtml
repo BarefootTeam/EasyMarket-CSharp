@@ -5,7 +5,7 @@
 <div class="panel panel-info">
     <div class="panel-heading">Edição do Produto</div>
     <p></p>
-    @using (Html.BeginForm("Edit", "Produto", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+    @using (Html.BeginForm("Edit", "Produto", FormMethod.Post, new { @class = "form-horizontal", @role = "form", @enctype = "multipart/form-data" }))
     {
         <div class="form-group">
             <label for="INome" class="col-sm-2 control-label">Nome</label>
@@ -15,40 +15,54 @@
         </div>        
         <p></p>
         <div class="form-group">
-            <label for="IDescricao" class="col-sm-2 control-label">Descricao</label>
+            <label for="IDescricao" class="col-sm-2 control-label">Descrição</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Descricao" name="Descricao" id="IDescricao" value="@Model.Descricao">
+                <input type="text" class="form-control" placeholder="Descrição" name="Descricao" id="IDescricao" value="@Model.Descricao">
             </div>
         </div>
         <p></p>
         <div class="form-group">
             <label for="IPrecoCusto" class="col-sm-2 control-label">Preço</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="PrecoCusto" name="PrecoCusto" id="IPrecoCusto" value="@Model.PrecoCusto">
+                <input type="text" class="form-control" placeholder="Preço" name="PrecoCusto" id="IPrecoCusto" value="@Model.PrecoCusto">
             </div>
         </div>
         <p></p>
         <div class="form-group">
-            <label for="IFoto" class="col-sm-2 control-label">Foto</label>
+            <label class="col-sm-2 control-label">Foto</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Foto" name="Foto" id="IFoto" value="@Model.Foto">
+                <img src="~/Content/Uploads/@Model.Foto" alt="@Model.Foto" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IFoto" class="col-sm-2 control-label">Atualizar Foto</label>
+            <div class="col-sm-9">
+                <input type="file" class="form-control" placeholder="Foto" name="file" id="IFoto" />
             </div>
         </div>        
         <p></p>
+        <p></p>
+        <div class="form-group">
+            <label for="ISupermercado" class="col-sm-2 control-label">Supermercado</label>
+            <div class="col-sm-9">
+                @Html.DropDownListFor(model => model.Supermercado.Id,
+                ((IEnumerable<EasyMarket.Models.Supermercado>)ViewBag.supermercados).
+                Select(i => new SelectListItem
+                {
+                    Text = i.Nome,
+                    Value = i.Id.ToString(),
+                    Selected = (Model != null) && (i.Id == Model.Supermercado.Id)
+                }), "Escolha uma opção...", new { @class = "form-control", required = "required", name = "SupermercadoId" }
+                )
+            </div>
+        </div>
         <div class="form-group">
             <label for="ICod" class="col-sm-2 control-label">Codigo de Barra</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Cod" name="Cod" id="ICod" value="@Model.Cod">
+                <input type="text" class="form-control" placeholder="Codigo de Barra" name="Cod" id="ICod" value="@Model.Cod">
             </div>
         </div>
-        <p></p>
-        <div class="form-group">
-            <label for="ISupermercado" class="col-sm-2 control-label"> Supermercado </label>
-            <div class="col-sm-9">
-                <input type="number" class="form-control" name="SupermercadoId" value="@Model.Supermercado.Id" disabled>                 
-            </div>
-            </div>
-            <p></p>           
+            <p></p>
             <div class="row">
                 <div class="col-md-offset-2 col-md-10">
                     <a href="@Url.Action("Index", "Produto")" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar </a>
